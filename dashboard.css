@@ -1,0 +1,2284 @@
+/* ==========================================
+   A.U SHOP ADMIN DASHBOARD
+   PART 1
+   Reset
+   Theme
+   Sidebar
+   Navbar
+   Background
+========================================== */
+
+/* Google Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================
+   Reset
+========================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:#08111F;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================
+   Theme Colors
+========================== */
+
+:root{
+
+    --primary:#D4AF37;
+
+    --primary-light:#FFD966;
+
+    --secondary:#0F1D35;
+
+    --card:#162544;
+
+    --text:#FFFFFF;
+
+    --text2:#BFC8D8;
+
+    --border:rgba(255,255,255,.08);
+
+}
+
+/* ==========================
+   Animated Background
+========================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-1;
+
+}
+
+.bubble{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(35px);
+
+    opacity:.28;
+
+    animation:float 18s linear infinite;
+
+}
+
+.bubble1{
+
+    width:320px;
+
+    height:320px;
+
+    background:#D4AF37;
+
+    top:10%;
+
+    left:-80px;
+
+}
+
+.bubble2{
+
+    width:260px;
+
+    height:260px;
+
+    background:#1D4ED8;
+
+    right:-70px;
+
+    top:35%;
+
+    animation-duration:22s;
+
+}
+
+.bubble3{
+
+    width:300px;
+
+    height:300px;
+
+    background:#6D28D9;
+
+    bottom:-80px;
+
+    left:45%;
+
+    animation-duration:25s;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateY(-40px) scale(1.08);
+
+    }
+
+    100%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* ==========================
+   Sidebar
+========================== */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:270px;
+
+    height:100vh;
+
+    background:rgba(12,22,42,.92);
+
+    backdrop-filter:blur(15px);
+
+    border-right:1px solid var(--border);
+
+    transition:.35s;
+
+    z-index:999;
+
+}
+
+.sidebar.collapsed{
+
+    width:80px;
+
+}
+
+.logo{
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.logo h2{
+
+    color:var(--primary);
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.logo p{
+
+    color:var(--text2);
+
+    margin-top:5px;
+
+    font-size:14px;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:20px 0;
+
+}
+
+.sidebar ul li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:16px 25px;
+
+    cursor:pointer;
+
+    color:var(--text2);
+
+    transition:.3s;
+
+}
+
+.sidebar ul li i{
+
+    width:25px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.sidebar ul li:hover{
+
+    background:rgba(212,175,55,.15);
+
+    color:var(--primary);
+
+    border-left:4px solid var(--primary);
+
+}
+
+.sidebar ul li.active{
+
+    background:rgba(212,175,55,.18);
+
+    color:var(--primary);
+
+    border-left:4px solid var(--primary);
+
+}
+
+.sidebar.collapsed span,
+
+.sidebar.collapsed .logo p{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .logo h2{
+
+    font-size:20px;
+
+}
+
+/* ==========================
+   Main Area
+========================== */
+
+.main{
+
+    margin-left:270px;
+
+    transition:.35s;
+
+}
+
+.sidebar.collapsed ~ .main{
+
+    margin-left:80px;
+
+}
+
+/* ==========================
+   Navbar
+========================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    height:80px;
+
+    background:rgba(16,27,49,.92);
+
+    backdrop-filter:blur(18px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 35px;
+
+    border-bottom:1px solid var(--border);
+
+    z-index:100;
+
+}
+
+.leftNav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.leftNav h1{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+}
+
+#menuBtn{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:var(--primary);
+
+    color:#111;
+
+    font-size:18px;
+
+}
+
+.rightNav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.navIcon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+.navIcon:hover{
+
+    background:var(--primary);
+
+    color:#111;
+
+    transform:translateY(-3px);
+
+}
+
+.badge{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:red;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Dashboard Container
+========================== */
+
+.dashboardContent{
+
+    padding:30px;
+
+}
+/* ==========================================
+   PART 2
+   Dashboard Cards
+========================================== */
+
+/* ==========================
+   Section Header
+========================== */
+
+.sectionHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:40px 0 20px;
+
+}
+
+.sectionHeader h2{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.sectionHeader button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+}
+
+/* ==========================
+   Dashboard Cards
+========================== */
+
+.dashboardCards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+/* ==========================
+   Card Design
+========================== */
+
+.card{
+
+    background:rgba(22,37,68,.92);
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(15px);
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-40px;
+
+    right:-40px;
+
+    width:120px;
+
+    height:120px;
+
+    background:rgba(212,175,55,.08);
+
+    border-radius:50%;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 15px 35px rgba(212,175,55,.25);
+
+}
+
+/* ==========================
+   Card Icon
+========================== */
+
+.cardIcon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:#fff;
+
+    flex-shrink:0;
+
+}
+
+/* Individual Colors */
+
+.totalSales .cardIcon{
+
+    background:linear-gradient(135deg,#D4AF37,#FFD966);
+
+    color:#111;
+
+}
+
+.todayOrders .cardIcon{
+
+    background:linear-gradient(135deg,#2563EB,#60A5FA);
+
+}
+
+.processingOrders .cardIcon{
+
+    background:linear-gradient(135deg,#F59E0B,#FBBF24);
+
+}
+
+.shippingOrders .cardIcon{
+
+    background:linear-gradient(135deg,#8B5CF6,#A78BFA);
+
+}
+
+.deliveredOrders .cardIcon{
+
+    background:linear-gradient(135deg,#22C55E,#4ADE80);
+
+}
+
+/* ==========================
+   Card Text
+========================== */
+
+.cardInfo{
+
+    flex:1;
+
+}
+
+.cardInfo h4{
+
+    color:var(--text2);
+
+    font-size:15px;
+
+    margin-bottom:10px;
+
+    font-weight:500;
+
+}
+
+.cardInfo h2{
+
+    color:#fff;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.cardInfo p{
+
+    color:#9FAEC5;
+
+    font-size:13px;
+
+}
+
+/* ==========================
+   View All Button
+========================== */
+
+#moreOrdersBtn{
+
+    background:linear-gradient(135deg,#D4AF37,#FFD966);
+
+    color:#111;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+#moreOrdersBtn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(212,175,55,.35);
+
+}
+
+/* ==========================
+   Status Colors
+========================== */
+
+.status{
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:inline-block;
+
+}
+
+.status.processing{
+
+    background:#F59E0B;
+
+    color:#fff;
+
+}
+
+.status.shipping{
+
+    background:#3B82F6;
+
+    color:#fff;
+
+}
+
+.status.delivered{
+
+    background:#22C55E;
+
+    color:#fff;
+
+}
+
+.status.cancelled{
+
+    background:#EF4444;
+
+    color:#fff;
+
+}
+/* ==========================================
+   PART 3
+   Orders Tables
+========================================== */
+
+/* ==========================
+   Table Container
+========================== */
+
+.tableContainer{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    margin-top:20px;
+
+    margin-bottom:40px;
+
+    background:rgba(22,37,68,.85);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    border:1px solid rgba(212,175,55,.18);
+
+    padding:20px;
+
+}
+
+/* ==========================
+   Table
+========================== */
+
+.orderTable{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+}
+
+/* ==========================
+   Table Header
+========================== */
+
+.orderTable thead{
+
+    background:rgba(212,175,55,.15);
+
+}
+
+.orderTable thead th{
+
+    color:var(--primary);
+
+    font-size:15px;
+
+    padding:18px;
+
+    text-align:left;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Table Body
+========================== */
+
+.orderTable tbody tr{
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    transition:.3s;
+
+}
+
+.orderTable tbody tr:hover{
+
+    background:rgba(255,255,255,.04);
+
+}
+
+.orderTable td{
+
+    padding:18px;
+
+    color:var(--text2);
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   Empty Message
+========================== */
+
+.emptyMessage{
+
+    text-align:center;
+
+    color:#9FAEC5;
+
+    padding:40px;
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   Action Button
+========================== */
+
+.actionBtn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:rgba(212,175,55,.15);
+
+    color:var(--primary);
+
+    transition:.3s;
+
+    font-size:16px;
+
+}
+
+.actionBtn:hover{
+
+    background:var(--primary);
+
+    color:#111;
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================
+   Order Menu
+========================== */
+
+.orderMenu{
+
+    position:absolute;
+
+    display:none;
+
+    background:#162544;
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:15px;
+
+    padding:12px;
+
+    width:220px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    z-index:999;
+
+}
+
+.orderMenu button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:none;
+
+    color:#fff;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    border-radius:10px;
+
+    margin-bottom:8px;
+
+    transition:.3s;
+
+    font-size:14px;
+
+}
+
+.orderMenu button:last-child{
+
+    margin-bottom:0;
+
+}
+
+.orderMenu button:hover{
+
+    background:rgba(212,175,55,.18);
+
+    color:var(--primary);
+
+}
+
+/* ==========================
+   Cancelled Orders
+========================== */
+
+.cancelledOrdersSection{
+
+    margin-top:50px;
+
+}
+
+/* ==========================
+   Section Spacing
+========================== */
+
+.recentOrdersSection,
+
+.cancelledOrdersSection{
+
+    margin-bottom:40px;
+
+}
+
+/* ==========================
+   Scrollbar
+========================== */
+
+.tableContainer::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.tableContainer::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+.tableContainer::-webkit-scrollbar-track{
+
+    background:#0B1220;
+
+}
+/* ==========================================
+   PART 4
+   Category & Product Management
+========================================== */
+
+/* ==========================
+   Common Sections
+========================== */
+
+.categorySection,
+.productSection,
+.addProductSection,
+.editProductSection,
+.categoryFormSection,
+.editCategorySection,
+.assignCategorySection{
+
+    margin-top:45px;
+
+}
+
+/* ==========================
+   Buttons Row
+========================== */
+
+.categoryButtons,
+.productButtons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.goldBtn,
+.blueBtn,
+.greenBtn,
+.redBtn,
+.saveBtn{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:13px 24px;
+
+    border-radius:12px;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.goldBtn{
+
+    background:linear-gradient(135deg,#D4AF37,#F4D35E);
+
+    color:#111;
+
+}
+
+.blueBtn{
+
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+}
+
+.greenBtn{
+
+    background:linear-gradient(135deg,#16A34A,#22C55E);
+
+}
+
+.redBtn{
+
+    background:linear-gradient(135deg,#DC2626,#EF4444);
+
+}
+
+.saveBtn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    background:linear-gradient(135deg,#D4AF37,#FFD966);
+
+    color:#111;
+
+}
+
+.goldBtn:hover,
+.blueBtn:hover,
+.greenBtn:hover,
+.redBtn:hover,
+.saveBtn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+}
+
+/* ==========================
+   Category Grid
+========================== */
+
+.categoryGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+/* ==========================
+   Category Card
+========================== */
+
+.categoryCard{
+
+    background:rgba(22,37,68,.90);
+
+    border:1px solid rgba(212,175,55,.18);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.categoryCard:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#D4AF37;
+
+    box-shadow:0 15px 35px rgba(212,175,55,.20);
+
+}
+
+.categoryCard img{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:cover;
+
+}
+
+.categoryCard h3{
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+    padding:18px 20px 10px;
+
+}
+
+.categoryCard p{
+
+    color:#C7D2FE;
+
+    padding:0 20px 20px;
+
+    line-height:1.6;
+
+}
+
+.viewCategoryBtn{
+
+    margin:0 20px 20px;
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Edit Category List
+========================== */
+
+.editCategoryList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.editCategoryItem{
+
+    background:rgba(22,37,68,.90);
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+/* ==========================
+   Assign Product
+========================== */
+
+.assignContainer{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+/* ==========================
+   Product Grid
+========================== */
+
+.productGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+    margin-top:25px;
+
+}
+
+/* ==========================
+   Product Card
+========================== */
+
+.productCard{
+
+    background:rgba(22,37,68,.90);
+
+    border-radius:20px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.productCard:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#D4AF37;
+
+    box-shadow:0 15px 35px rgba(212,175,55,.20);
+
+}
+
+.productCard img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.productCard h3{
+
+    padding:18px 20px 5px;
+
+    color:#fff;
+
+    font-size:21px;
+
+}
+
+.productCard .price{
+
+    padding:0 20px;
+
+    color:#D4AF37;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.productCard .editBtn{
+
+    width:calc(100% - 40px);
+
+    margin:20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563EB;
+
+    color:#fff;
+
+    padding:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.productCard .editBtn:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* ==========================
+   Search Box
+========================== */
+
+.searchBox{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:420px;
+
+    margin:25px 0;
+
+}
+
+.searchBox input{
+
+    width:100%;
+
+    padding:14px 50px 14px 18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#1A2948;
+
+    color:#fff;
+
+    outline:none;
+
+}
+
+.searchBox i{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#D4AF37;
+
+}
+/* ==========================================
+   PART 5
+   Forms & Inputs
+========================================== */
+
+/* ==========================
+   Form Container
+========================== */
+
+.formContainer{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:35px auto;
+
+    padding:30px;
+
+    background:rgba(22,37,68,.92);
+
+    border:1px solid rgba(212,175,55,.18);
+
+    border-radius:22px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+}
+
+/* ==========================
+   Form Title
+========================== */
+
+.formContainer h2{
+
+    color:#D4AF37;
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+/* ==========================
+   Form Group
+========================== */
+
+.formGroup{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+/* ==========================
+   Label
+========================== */
+
+.formGroup label{
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+/* ==========================
+   Input
+========================== */
+
+.formGroup input,
+
+.formGroup textarea,
+
+.formGroup select{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:#1B2C4D;
+
+    color:#fff;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+/* Focus */
+
+.formGroup input:focus,
+
+.formGroup textarea:focus,
+
+.formGroup select:focus{
+
+    border-color:#D4AF37;
+
+    box-shadow:0 0 10px rgba(212,175,55,.25);
+
+}
+
+/* ==========================
+   Textarea
+========================== */
+
+.formGroup textarea{
+
+    resize:vertical;
+
+    min-height:140px;
+
+}
+
+/* ==========================
+   File Upload
+========================== */
+
+.formGroup input[type=file]{
+
+    padding:12px;
+
+    cursor:pointer;
+
+}
+
+.formGroup input[type=file]::-webkit-file-upload-button{
+
+    background:#D4AF37;
+
+    color:#111;
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-right:15px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Image Preview
+========================== */
+
+.imagePreview{
+
+    width:180px;
+
+    height:180px;
+
+    margin-top:15px;
+
+    border-radius:15px;
+
+    border:2px dashed rgba(212,175,55,.35);
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#111C32;
+
+}
+
+.imagePreview img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* ==========================
+   Two Columns
+========================== */
+
+.formRow{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+/* ==========================
+   Save Button
+========================== */
+
+.saveBtn{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#D4AF37,#FFD966);
+
+    color:#111;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.saveBtn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 30px rgba(212,175,55,.35);
+
+}
+
+/* ==========================
+   Cancel Button
+========================== */
+
+.cancelBtn{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:#DC2626;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.cancelBtn:hover{
+
+    background:#B91C1C;
+
+}
+
+/* ==========================
+   Product Image
+========================== */
+
+.productImage{
+
+    width:220px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    margin-top:20px;
+
+    border:2px solid rgba(212,175,55,.30);
+
+}
+
+/* ==========================
+   Hide Sections
+========================== */
+
+#categoryFormSection,
+
+#editCategorySection,
+
+#assignCategorySection,
+
+#addProductSection,
+
+#editProductSection,
+
+#editProductForm,
+
+#ordersSection,
+
+#categoriesSection,
+
+#productsSection{
+
+    display:none;
+
+}
+/* ==========================================
+   PART 6
+   Modals
+   Notifications
+   Responsive
+========================================== */
+
+/* ==========================
+   Modal
+========================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+}
+
+.modalContent{
+
+    width:90%;
+
+    max-width:650px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#162544;
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    position:relative;
+
+    animation:popup .35s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.85);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================
+   Close Button
+========================== */
+
+.closeModal{
+
+    position:absolute;
+
+    top:18px;
+
+    right:20px;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    color:#D4AF37;
+
+    transition:.3s;
+
+}
+
+.closeModal:hover{
+
+    transform:rotate(90deg);
+
+}
+
+/* ==========================
+   Notification
+========================== */
+
+.notificationList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.notificationItem{
+
+    background:#1C2E53;
+
+    border-left:4px solid #D4AF37;
+
+    border-radius:12px;
+
+    padding:15px;
+
+}
+
+.notificationItem h4{
+
+    color:#fff;
+
+    margin-bottom:6px;
+
+}
+
+.notificationItem small{
+
+    color:#BFC8D8;
+
+}
+
+/* ==========================
+   Settings
+========================== */
+
+.settingsGrid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+/* ==========================
+   Buyer Details
+========================== */
+
+#buyerDetails p{
+
+    margin:12px 0;
+
+    color:#E2E8F0;
+
+    line-height:1.7;
+
+}
+
+/* ==========================
+   Invoice
+========================== */
+
+#invoiceContent{
+
+    color:#fff;
+
+    line-height:1.8;
+
+}
+
+#invoiceContent h2{
+
+    color:#D4AF37;
+
+    margin-bottom:20px;
+
+}
+
+#invoiceContent hr{
+
+    margin:15px 0;
+
+    border:1px solid rgba(255,255,255,.10);
+
+}
+
+/* ==========================
+   Scrollbar
+========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+    height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#D4AF37;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#08111F;
+
+}
+
+/* ==========================
+   Smooth Animation
+========================== */
+
+button,
+.card,
+.productCard,
+.categoryCard,
+.navIcon,
+.sidebar li{
+
+    transition:.3s ease;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:992px){
+
+.sidebar{
+
+    width:80px;
+
+}
+
+.sidebar span,
+.sidebar .logo p{
+
+    display:none;
+
+}
+
+.main{
+
+    margin-left:80px;
+
+}
+
+.dashboardCards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.formRow{
+
+    grid-template-columns:1fr;
+
+}
+
+.settingsGrid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.navbar{
+
+    padding:15px;
+
+}
+
+.leftNav h1{
+
+    font-size:22px;
+
+}
+
+.dashboardCards{
+
+    grid-template-columns:1fr;
+
+}
+
+.categoryGrid{
+
+    grid-template-columns:1fr;
+
+}
+
+.productGrid{
+
+    grid-template-columns:1fr;
+
+}
+
+.tableContainer{
+
+    overflow-x:auto;
+
+}
+
+.modalContent{
+
+    width:95%;
+
+    padding:20px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.dashboardContent{
+
+    padding:15px;
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+.card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.cardIcon{
+
+    margin-bottom:15px;
+
+}
+
+.sectionHeader{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+}
+/* ==========================
+   Category Footer
+========================== */
+
+.categoryFooter{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================
+   View Category Button Hover
+========================== */
+
+.viewCategoryBtn:hover{
+
+    background:#FFD966;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   END OF dashboard.css
+========================================== */
+
+/* Hidden Sections + Extra UI */
+
+.cardButtons{
+    display:flex;
+    gap:10px;
+    padding:0 20px 20px;
+}
+
+.editBtn,
+.deleteBtn{
+    border:none;
+    border-radius:10px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    color:#fff;
+}
+
+.editBtn{
+    background:#2563EB;
+}
+
+.deleteBtn{
+    background:#DC2626;
+}
+
+.assignCard{
+    background:rgba(22,37,68,.90);
+    border:1px solid rgba(212,175,55,.18);
+    border-radius:18px;
+    padding:20px;
+}
+
+.assignCard select{
+    width:100%;
+    margin:12px 0;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    background:#1B2C4D;
+    color:#fff;
+}
+
+.modalHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modalHeader h2{
+    color:#D4AF37;
+}
+
+.modalBody{
+    margin-top:10px;
+}
+
+.modalFooter{
+    margin-top:20px;
+}
+
+.modalButtons{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.largeModal{
+    max-width:800px;
+}
+
+.ordersSection{
+    margin-top:20px;
+}
+
+/* Theme Support */
+
+body[data-theme="dark"]{
+    background:#0B1220;
+}
+
+body[data-theme="light"]{
+    background:#EEF2F7;
+    color:#111;
+}
+
+body[data-theme="light"] .navbar,
+body[data-theme="light"] .sidebar,
+body[data-theme="light"] .card,
+body[data-theme="light"] .tableContainer,
+body[data-theme="light"] .formContainer,
+body[data-theme="light"] .categoryCard,
+body[data-theme="light"] .productCard{
+    background:rgba(255,255,255,.95);
+    color:#111;
+}
+
+body[data-theme="light"] .cardInfo h2,
+body[data-theme="light"] .cardInfo h4,
+body[data-theme="light"] .orderTable td,
+body[data-theme="light"] .formGroup label{
+    color:#111;
+}
