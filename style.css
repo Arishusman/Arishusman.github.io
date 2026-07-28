@@ -2638,3 +2638,35 @@ section{
     }
 
 }
+/* SLIGHT PRODUCT CARD HEIGHT INCREASE */
+
+@media(max-width:600px){
+
+.card{
+
+    padding:8px;
+
+}
+
+
+.card img{
+
+    height:110px;
+
+}
+
+
+.card h3{
+
+    margin-top:6px;
+
+}
+
+
+.card button{
+
+    margin-top:6px;
+
+}
+
+}
