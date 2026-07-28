@@ -446,10 +446,10 @@ async function loadProducts() {
 
         data.products.forEach(product => {
 
-           const card = `
+          const card = `
 <div class="card product" onclick='openProductPage(${JSON.stringify(product)})'>
 
-    <img src="${product.image || 'https://via.placeholder.com/250'}">
+    <img src="${product.image || 'https://via.placeholder.com/250'}" alt="${product.name}">
 
     <h3>${product.name}</h3>
 
@@ -461,11 +461,10 @@ async function loadProducts() {
             🛒 Add To Cart
         </button>
 
-    
+    </div>
 
 </div>
 
-    </div>
 
 </div>
 `;

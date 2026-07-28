@@ -738,8 +738,8 @@ position:fixed;
 left:25px;
 
 
-bottom:25px;
-
+bottom:90px;
+z-index:999;
 
 width:65px;
 
