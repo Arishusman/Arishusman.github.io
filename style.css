@@ -2307,3 +2307,97 @@ section{
 
 
 }
+/* ===============================
+ PRODUCT WIDTH INCREASE + HEIGHT REDUCE
+=============================== */
+
+.products{
+
+    grid-template-columns:repeat(3, 1fr);
+    gap:15px;
+
+}
+
+
+.card{
+
+    padding:12px;
+
+    min-height:auto;
+
+}
+
+
+.card img{
+
+    height:120px;
+
+    object-fit:contain;
+
+}
+
+
+.card h3{
+
+    font-size:17px;
+
+    margin-top:8px;
+
+}
+
+
+.card p{
+
+    font-size:16px;
+
+}
+
+
+.card button{
+
+    margin-top:10px;
+
+    padding:10px;
+
+    font-size:14px;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+
+.products{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:8px;
+
+}
+
+
+.card img{
+
+    height:90px;
+
+}
+
+
+.card h3{
+
+    font-size:13px;
+
+}
+
+
+.card button{
+
+    padding:8px;
+
+    font-size:12px;
+
+}
+
+}
