@@ -1790,3 +1790,103 @@ border-radius:50%;
 margin-left:5px;
 
 }
+
+
+/* ==========================
+ HERO TEXT FIT FIX
+========================== */
+
+.hero{
+    overflow:hidden;
+}
+
+
+.hero-content{
+    max-width:600px;
+}
+
+
+.hero-content h1{
+    font-size:50px;
+    line-height:1.1;
+}
+
+
+.hero-content h2{
+    font-size:30px;
+}
+
+
+.hero-content p{
+    font-size:16px;
+}
+
+
+.hero button{
+    margin-top:20px;
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.hero{
+    padding:25px;
+}
+
+
+.hero-content h1{
+    font-size:30px;
+}
+
+
+.hero-content h2{
+    font-size:20px;
+}
+
+
+.hero-content p{
+    font-size:13px;
+}
+
+
+.hero button{
+    margin-top:15px;
+    padding:10px 25px;
+}
+
+}
+
+
+/* ==========================
+ PRODUCT IMAGE FINAL FIX
+========================== */
+
+.card img{
+
+    width:100%;
+    height:130px;
+
+    object-fit:contain;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.05);
+
+}
+
+
+/* MOBILE PRODUCT IMAGE */
+
+@media(max-width:600px){
+
+.card img{
+
+    height:110px;
+
+}
+
+
+}
