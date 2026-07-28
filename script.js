@@ -219,6 +219,8 @@ window.onload = function () {
     loadProducts();
 }
 
+loadWishlist();
+
 }; 
 
 // =====================================
@@ -410,21 +412,34 @@ async function loadProducts() {
 
         data.products.forEach(product => {
 
-            const card = `
-                <div class="card product">
+           const card = `
+<div class="card product" onclick='openProductPage(${JSON.stringify(product)})'>
 
-                    <img src="${product.image || 'https://via.placeholder.com/250'}">
+    <img src="${product.image || 'https://via.placeholder.com/250'}">
 
-                    <h3>${product.name}</h3>
+    <h3>${product.name}</h3>
 
-                    <p>Rs. ${product.price}</p>
+    <p>Rs. ${product.price}</p>
 
-                    <button onclick="addCart('${product.name}', ${product.price})">
-                        Add To Cart
-                    </button>
+    <div class="card-buttons">
 
-                </div>
-            `;
+        <button onclick="event.stopPropagation(); addCart('${product.name}', ${product.price})">
+            🛒 Add To Cart
+        </button>
+
+        <button
+class="wishlist-btn ${isInWishlist(product.name) ? 'active' : ''}"
+onclick='event.stopPropagation(); toggleWishlist(${JSON.stringify(product)})'>
+❤️
+</button>
+
+    </div>
+
+</div>
+`;
+
+
+
 
             if (product.category === "Law" && lawContainer) {
     lawContainer.innerHTML += card;
@@ -445,6 +460,139 @@ else if (product.category === "Hockey" && hockeyContainer) {
 
         console.error("Error Loading Products:", error);
 
+    }
+
+}
+
+function openProductPage(product){
+
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+    window.location.href = "product.html";
+
+}
+
+
+// =====================================
+// WISHLIST SYSTEM
+// =====================================
+
+function toggleWishlist(product) {
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const index = wishlist.findIndex(item => item.name === product.name);
+
+    if (index === -1) {
+
+        wishlist.push(product);
+        alert("❤️ Added To Wishlist");
+
+    } else {
+
+        wishlist.splice(index, 1);
+        alert("❌ Removed From Wishlist");
+
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    if (document.getElementById("lawProducts")) {
+        loadProducts();
+    }
+
+    if (document.getElementById("wishlistContainer")) {
+        loadWishlist();
+    }
+
+}
+
+// =====================================
+// CHECK IF PRODUCT IS IN WISHLIST
+// =====================================
+
+function isInWishlist(name) {
+
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    return wishlist.some(item => item.name === name);
+
+}
+
+// =====================================
+// LOAD WISHLIST PAGE
+// =====================================
+
+function loadWishlist() {
+
+    const container = document.getElementById("wishlistContainer");
+
+    if (!container) return;
+
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    if (wishlist.length === 0) {
+
+        container.innerHTML = `
+            <h2 style="color:white;text-align:center;">
+                ❤️ Your Wishlist Is Empty
+            </h2>
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML = "";
+
+    wishlist.forEach(product => {
+
+        container.innerHTML += `
+
+        <div class="card product">
+
+            <img src="${product.image || 'https://via.placeholder.com/250'}">
+
+            <h3>${product.name}</h3>
+
+            <p>Rs. ${product.price}</p>
+
+            <div class="card-buttons">
+
+                <button onclick="addCart('${product.name}', ${product.price})">
+                    🛒 Add To Cart
+                </button>
+
+                <button onclick="removeWishlist('${product.name}')">
+                    🗑 Remove
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+// =====================================
+// REMOVE FROM WISHLIST
+// =====================================
+
+function removeWishlist(name) {
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    wishlist = wishlist.filter(item => item.name !== name);
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    loadWishlist();
+
+    if (document.getElementById("lawProducts")) {
+        loadProducts();
     }
 
 }

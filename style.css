@@ -1536,6 +1536,8 @@ padding:45px;
 
 text-align:center;
 
+ box-sizing: border-box;
+    overflow: hidden;
 
 background:rgba(255,255,255,.08);
 
@@ -1627,17 +1629,14 @@ transform:scale(1);
 
 
 .success-box h1{
-
-
-font-size:45px;
-
-
-color:#ffd700;
-
-
-margin-top:25px;
-
-
+    font-size: clamp(28px, 5vw, 45px);
+    color: #ffd700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 
@@ -2691,4 +2690,421 @@ section{
 .card button{
     margin-top:8px;
     padding:8px;
+}
+
+/* =========================
+MOBILE RESPONSIVE - ORDER SUCCESS PAGE
+========================= */
+
+@media (max-width: 768px){
+
+    .success-box{
+        padding: 30px 20px;
+        margin: 40px auto;
+    }
+
+    .check{
+        width: 70px;
+        height: 70px;
+        font-size: 45px;
+    }
+
+    .success-box h1{
+        font-size: 32px;
+    }
+
+    .success-box h2{
+        font-size: 20px;
+    }
+
+    .order-details{
+        padding: 18px;
+    }
+
+    .success-box button{
+        width: 100%;
+        padding: 15px;
+    }
+
+}
+
+/* =========================
+PRODUCT DETAILS PAGE
+========================= */
+
+.product-details{
+
+    width:90%;
+    max-width:700px;
+
+    margin:50px auto;
+
+    padding:30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border:2px solid gold;
+
+    border-radius:25px;
+
+    box-sizing:border-box;
+
+}
+
+.product-details img{
+
+    width:280px;
+
+    max-width:100%;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+}
+
+.product-details h1{
+
+    color:gold;
+
+    margin-bottom:10px;
+
+}
+
+.product-details h2{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.product-details p{
+
+    color:white;
+
+    line-height:1.7;
+
+}
+
+.product-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin:30px 0;
+
+}
+
+.product-buttons button,
+.product-details button{
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:gold;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.card-buttons{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.card-buttons button:first-child{
+    flex:1;
+}
+
+.wishlist-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+    background:white;
+}
+
+.wishlist-btn.active{
+    background:red;
+    color:white;
+}
+
+/* =========================
+BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+
+    position:fixed;
+    bottom:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    background:#111;
+
+    border-top:2px solid gold;
+
+    padding:12px 0;
+
+    z-index:9999;
+
+}
+
+.bottom-nav a{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a:hover{
+
+    color:gold;
+
+}
+
+.bottom-nav span{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+}
+
+body{
+
+    padding-bottom:80px;
+
+}
+
+/* =========================
+WISHLIST PAGE
+========================= */
+
+.wishlist-title{
+
+    text-align:center;
+
+    color:gold;
+
+    margin:40px 0;
+
+    font-size:40px;
+
+}
+
+/* =========================
+TRACK ORDER PAGE
+========================= */
+
+.track-card{
+
+    width:90%;
+
+    max-width:600px;
+
+    margin:20px auto;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.08);
+
+    border:2px solid gold;
+
+    border-radius:20px;
+
+    color:white;
+
+    box-sizing:border-box;
+
+}
+
+.track-card h3{
+
+    color:gold;
+
+    margin-bottom:15px;
+
+}
+
+#phone{
+
+    width:90%;
+
+    max-width:450px;
+
+    padding:15px;
+
+    display:block;
+
+    margin:20px auto;
+
+    border-radius:10px;
+
+    border:none;
+
+}
+
+button{
+
+    display:block;
+
+    margin:20px auto;
+
+}
+
+/* =========================
+QUANTITY BOX
+========================= */
+
+.quantity-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:25px 0;
+
+}
+
+.quantity-box button{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:gold;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.quantity-box span{
+
+    font-size:24px;
+
+    color:white;
+
+    font-weight:bold;
+
+    min-width:30px;
+
+    text-align:center;
+
+}
+
+.stock{
+
+    color:#25D366;
+
+    font-weight:bold;
+
+    margin:15px 0;
+
+}
+
+.delivery-info{
+
+    color:white;
+
+    margin-top:25px;
+
+    line-height:1.8;
+
+}
+
+.rating{
+
+    color:gold;
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+.wishlist-btn{
+
+    background:white;
+
+    transition:.3s;
+
+}
+
+.wishlist-btn.active{
+
+    background:#ff1744;
+
+    color:white;
+
+    transform:scale(1.1);
+
+}
+
+.product-details img{
+
+    transition:0.3s ease;
+
+    cursor:zoom-in;
+
+}
+
+.product-details img:hover{
+
+    transform:scale(1.08);
+
 }

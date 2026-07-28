@@ -6,19 +6,40 @@ async function trackOrder() {
 
     const data = await response.json();
 
-    const order = data.orders.find(o => o.phone === phone);
+    const order = data.orders.filter(o => o.phone === phone);
 
-    if (!order) {
+    if (orders.length === 0) {
 
-        document.getElementById("result").innerHTML =
-            "❌ Order Not Found";
+    document.getElementById("result").innerHTML =
+        "<h2>❌ No Order Found</h2>";
 
-        return;
-    }
+    return;
+}
 
-    document.getElementById("result").innerHTML = `
+let html = "";
+
+orders.forEach(order => {
+
+    html += `
+
+    <div class="track-card">
+
         <h3>${order.productName}</h3>
-        <p>Status: <b>${order.status}</b></p>
-        <p>Price: Rs. ${order.price}</p>
+
+        <p>📦 Quantity: ${order.quantity}</p>
+
+        <p>💰 Price: Rs. ${order.price}</p>
+
+        <p>🚚 Status: <b>${order.status}</b></p>
+
+        <p>📍 Address: ${order.address}</p>
+
+    </div>
+
     `;
+
+});
+
+document.getElementById("result").innerHTML = html;
+
 }

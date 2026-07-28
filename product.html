@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details - A.U SHOP</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="quantity-box">
+
+    <button onclick="decreaseQty()">−</button>
+
+    <span id="qty">1</span>
+
+    <button onclick="increaseQty()">+</button>
+
+</div>
+
+    <div class="product-details">
+
+        <img id="productImage" src="" alt="Product Image">
+
+        <h1 id="productName"></h1>
+        
+        <p class="rating">
+
+⭐⭐⭐⭐⭐ 4.9 / 5
+
+</p>
+
+        <h2 id="productPrice"></h2>
+
+        <p class="stock">
+    ✅ In Stock
+</p>
+
+        <p id="productDescription"></p>
+
+        <div class="product-buttons">
+
+
+            <div class="delivery-info">
+
+    🚚 Free Delivery Across Pakistan
+
+    <br><br>
+
+    ⏰ Delivery Time: 2–5 Days
+
+</div>
+
+            <button id="wishlistBtn">
+                ❤️ Add To Wishlist
+            </button>
+
+            <button id="cartBtn">
+                🛒 Add To Cart
+            </button>
+
+        </div>
+
+        <button onclick="history.back()">
+            ⬅ Back
+        </button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+
+        const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+        if (!product) {
+
+            window.location.href = "index.html";
+
+        }
+
+        document.getElementById("productImage").src =
+            product.image || "https://via.placeholder.com/300";
+
+        document.getElementById("productName").innerText =
+            product.name;
+
+        document.getElementById("productPrice").innerText =
+            "Rs. " + product.price;
+
+        document.getElementById("productDescription").innerText =
+            product.description || "No Description Available";
+
+
+
+        document.getElementById("cartBtn").onclick = function () {
+
+            addCart(product.name, product.price);
+
+        };
+
+
+
+        document.getElementById("wishlistBtn").onclick = function () {
+
+            let wishlist =
+                JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            let exists =
+                wishlist.find(item => item.name === product.name);
+
+            if (!exists) {
+
+                wishlist.push(product);
+
+                localStorage.setItem(
+                    "wishlist",
+                    JSON.stringify(wishlist)
+                );
+
+                alert("❤️ Added To Wishlist");
+
+            }
+
+            else {
+
+                alert("Already In Wishlist");
+
+            }
+            
+
+            let quantity = 1;
+
+function increaseQty(){
+
+    quantity++;
+
+    document.getElementById("qty").innerText = quantity;
+
+}
+
+function decreaseQty(){
+
+    if(quantity > 1){
+
+        quantity--;
+
+        document.getElementById("qty").innerText = quantity;
+
+    }
+
+}
+        };
+
+    </script>
+
+</body>
+
+</html>
