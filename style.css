@@ -2670,3 +2670,23 @@ section{
 }
 
 }
+.card{
+    padding:10px;
+}
+
+.card img{
+    height:120px;
+}
+
+.card h3{
+    margin-top:8px;
+}
+
+.card p{
+    margin:5px 0;
+}
+
+.card button{
+    margin-top:8px;
+    padding:8px;
+}
