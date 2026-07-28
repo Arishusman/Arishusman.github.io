@@ -461,11 +461,7 @@ async function loadProducts() {
             🛒 Add To Cart
         </button>
 
-    </div class="card-buttons">
-
-    <button onclick="event.stopPropagation(); addCart('${product.name}', ${product.price})">
-        🛒 Add To Cart
-    </button>
+    
 
 </div>
 
