@@ -1890,3 +1890,263 @@ margin-left:5px;
 
 
 }
+
+/* =====================================
+   A.U SHOP COMPACT PREMIUM LOOK
+===================================== */
+
+
+/* NAVBAR SMALL */
+
+.navbar{
+
+    margin:15px auto;
+    padding:15px 25px;
+
+}
+
+
+.logo{
+
+    font-size:32px;
+
+}
+
+
+.nav-links a{
+
+    font-size:15px;
+    margin-left:18px;
+
+}
+
+
+
+/* HERO KEEP SAME HEIGHT BUT COMPACT */
+
+.hero{
+
+    margin:25px auto;
+
+    padding:35px;
+
+}
+
+
+.hero-content h1{
+
+    font-size:45px;
+
+}
+
+
+.hero-content h2{
+
+    font-size:26px;
+
+}
+
+
+.hero-content p{
+
+    font-size:15px;
+
+}
+
+
+
+/* SEARCH */
+
+.search-section{
+
+    margin:30px auto;
+
+}
+
+
+#searchBox{
+
+    padding:14px 25px;
+
+}
+
+
+
+/* ALL SECTIONS LESS GAP */
+
+section{
+
+    margin:45px auto;
+
+}
+
+
+section h2{
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* PRODUCT GRID BIGGER CARDS */
+
+.products{
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+
+/* PRODUCT CARD */
+
+.card{
+
+    padding:15px;
+
+    border-radius:20px;
+
+}
+
+
+.card img{
+
+    height:180px;
+
+}
+
+
+.card h3{
+
+    font-size:19px;
+
+}
+
+
+.card p{
+
+    font-size:18px;
+
+}
+
+
+.card button{
+
+    padding:12px;
+
+    font-size:15px;
+
+}
+
+
+
+/* CATEGORY BANNERS */
+
+.category-banner{
+
+    height:180px;
+
+    margin-bottom:25px;
+
+}
+
+
+.category-banner h2{
+
+    font-size:38px;
+
+}
+
+
+
+/* FOOTER */
+
+footer{
+
+    margin-top:40px;
+
+    padding:20px;
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.products{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+
+}
+
+
+@media(max-width:600px){
+
+
+.navbar{
+
+    padding:12px 18px;
+
+}
+
+
+.logo{
+
+    font-size:26px;
+
+}
+
+
+.hero-content h1{
+
+    font-size:28px;
+
+}
+
+
+section{
+
+    margin:35px auto;
+
+}
+
+
+.card{
+
+    padding:10px;
+
+}
+
+
+.card img{
+
+    height:120px;
+
+}
+
+
+.card h3{
+
+    font-size:14px;
+
+}
+
+
+.card p{
+
+    font-size:14px;
+
+}
+
+
+}
