@@ -2477,3 +2477,40 @@ section{
 }
 
 }
+
+/* MOBILE PRODUCT WIDTH INCREASE */
+
+@media(max-width:600px){
+
+.products{
+
+    width:100%;
+
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    gap:6px;
+
+}
+
+
+.card{
+
+    width:100%;
+
+    padding:6px;
+
+}
+
+
+.card h3{
+
+    font-size:14px;
+
+}
+
+
+}
+
+section{
+    width:96%;
+}
