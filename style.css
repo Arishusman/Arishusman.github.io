@@ -2571,3 +2571,70 @@ section{
 }
 
 }
+
+/* =================================
+   MOBILE PRODUCT CARD FINAL SIZE
+================================= */
+
+@media(max-width:600px){
+
+    section{
+        width:100%;
+        padding:0 6px;
+    }
+
+
+    .products{
+
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap:6px;
+
+    }
+
+
+    .card{
+
+        padding:6px;
+        border-radius:14px;
+
+    }
+
+
+    .card img{
+
+        height:95px;
+
+    }
+
+
+    .card h3{
+
+        font-size:13px;
+        margin:4px 0;
+
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+
+    }
+
+
+    .card p{
+
+        font-size:14px;
+        margin:2px 0;
+
+    }
+
+
+    .card button{
+
+        margin-top:3px;
+        padding:7px 3px;
+
+        font-size:11px;
+
+    }
+
+}
