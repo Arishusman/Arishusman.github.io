@@ -6,7 +6,7 @@ async function trackOrder() {
 
     const data = await response.json();
 
-    const order = data.orders.filter(o => o.phone === phone);
+    const orders = data.orders.filter(o => o.phone === phone);
 
     if (orders.length === 0) {
 
