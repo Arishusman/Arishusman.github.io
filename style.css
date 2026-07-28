@@ -2150,3 +2150,160 @@ section{
 
 
 }
+
+/* =====================================
+   CATEGORY + PRODUCT SECTION FIX
+===================================== */
+
+
+.category-banner{
+
+    height:160px;
+
+    margin-bottom:25px;
+
+    border-radius:25px;
+
+}
+
+
+.category-banner h2{
+
+    font-size:35px;
+
+}
+
+
+.category-banner p{
+
+    font-size:16px;
+
+}
+
+
+
+/* PRODUCT AREA */
+
+.products{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+
+
+/* PRODUCT CARD SIZE */
+
+.card{
+
+    padding:15px;
+
+    min-height:330px;
+
+}
+
+
+
+.card img{
+
+    width:100%;
+
+    height:170px;
+
+    object-fit:contain;
+
+}
+
+
+
+.card h3{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+}
+
+
+.card p{
+
+    font-size:18px;
+
+    margin-top:8px;
+
+}
+
+
+.card button{
+
+    margin-top:15px;
+
+    padding:12px;
+
+}
+
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+.products{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+
+.category-banner{
+
+    height:130px;
+
+}
+
+
+.category-banner h2{
+
+    font-size:25px;
+
+}
+
+
+.products{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+
+}
+
+
+.card{
+
+    min-height:260px;
+
+}
+
+
+.card img{
+
+    height:110px;
+
+}
+
+
+}
