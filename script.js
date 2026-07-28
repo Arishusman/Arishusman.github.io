@@ -12,18 +12,19 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // ADD TO CART
 // =====================================
 
-function addCart(productName, productPrice) {
+function addCart(productName, productPrice, productqty) {
 
     const product = {
         name: productName,
-        price: productPrice
+        price: productPrice,
+        qty: productqty
     };
 
     cart = [product];
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert(productName + " Added To Cart Successfully!");
+    showToast("✅ Product added to cart!");
 
     window.location.href = "checkout.html";
 }
@@ -77,6 +78,22 @@ function searchProduct() {
     });
 
 }
+
+
+function showToast(message){
+
+    const toast = document.getElementById("toast");
+
+    toast.innerText = message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },2500);
+
+}
+
 
 // =====================================
 // OPEN PRODUCT
@@ -495,12 +512,42 @@ else if (product.category === "Hockey" && hockeyContainer) {
 
 }
 
-function openProductPage(product){
+function openProductPage(product) {
 
-    localStorage.setItem("selectedProduct", JSON.stringify(product));
+    const productPage = document.getElementById("product-page");
 
-    window.location.href = "product.html";
+    productPage.innerHTML = `
+        <!-- YAHAN purana HTML remove karke naya HTML paste karna hai -->
 
+        <div class="product-details">
+
+            <img src="${product.image}" class="product-image">
+
+            <h2>${product.name}</h2>
+
+            <p>${product.description}</p>
+
+            <div class="quantity-box">
+                <button onclick="changeQty(-1)">-</button>
+                <span id="qty">1</span>
+                <button onclick="changeQty(1)">+</button>
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="addCart('${product.name}', ${product.price})">
+                    Add to Cart
+                </button>
+
+                <button onclick="toggleWishlist('${product.name}')">
+                    ❤️ Wishlist
+                </button>
+            </div>
+        window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+        </div>
+    `;
 }
 
 
@@ -517,12 +564,12 @@ function toggleWishlist(product) {
     if (index === -1) {
 
         wishlist.push(product);
-        alert("❤️ Added To Wishlist");
+        showToast("❤️ Added To Wishlist");
 
     } else {
 
         wishlist.splice(index, 1);
-        alert("❌ Removed From Wishlist");
+        showToast("❌ Removed From Wishlist");
 
     }
 
