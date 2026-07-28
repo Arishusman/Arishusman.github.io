@@ -2514,3 +2514,60 @@ section{
 section{
     width:96%;
 }
+
+/* REAL MOBILE PRODUCT WIDTH FIX */
+
+@media(max-width:600px){
+
+section{
+    width:98%;
+}
+
+
+.products{
+
+    width:100%;
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:5px;
+
+}
+
+
+.card{
+
+    width:100%;
+
+    padding:6px;
+
+}
+
+
+.card h3{
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    margin-top:3px;
+
+}
+
+
+.card p{
+
+    margin:3px 0;
+
+}
+
+
+.card button{
+
+    margin-top:3px;
+
+}
+
+}
