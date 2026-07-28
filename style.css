@@ -2401,3 +2401,79 @@ section{
 }
 
 }
+/* =================================
+ MOBILE PRODUCT CARD COMPACT FIX
+================================= */
+
+@media(max-width:600px){
+
+.products{
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:8px;
+
+}
+
+
+.card{
+
+    padding:8px;
+
+    border-radius:15px;
+
+}
+
+
+/* image compact */
+
+.card img{
+
+    height:100px;
+
+    margin-bottom:5px;
+
+}
+
+
+/* product name */
+
+.card h3{
+
+    font-size:13px;
+
+    margin-top:5px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+/* price */
+
+.card p{
+
+    font-size:14px;
+
+    margin:5px 0;
+
+}
+
+
+/* button */
+
+.card button{
+
+    margin-top:5px;
+
+    padding:7px 5px;
+
+    font-size:11px;
+
+}
+
+}
