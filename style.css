@@ -612,7 +612,7 @@ box-shadow:
 width:100%;
 
 
-height:240px;
+height:160px;
 
 
 object-fit:cover;
@@ -820,7 +820,7 @@ MOBILE
 
 
 grid-template-columns:repeat(2,1fr);
-
+gap:12px;
 
 }
 
@@ -850,11 +850,13 @@ font-size:38px;
 
 .card{
     padding:10px;
+     border-radius:18px;
+    min-height:280px;
 }
 
 .card img{
     width:100%;
-    height:120px;
+    height:140px;
     object-fit:cover;
 }
 
@@ -878,8 +880,6 @@ font-size:38px;
 .hero{
 
 
-height:400px;
-
 padding:30px;
 
 
@@ -890,12 +890,20 @@ padding:30px;
 .hero-content h1{
 
 
-font-size:32px;
+font-size:28px;
+line-height:1.2;
 
 
 }
 
+.hero-content p{
+    font-size:14px;
+}
 
+.hero-content .btn{
+    padding:10px 20px;
+    font-size:14px;
+}
 
 #searchBox{
 
