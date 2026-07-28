@@ -1,14 +1,40 @@
-<h1>📦 Track Your Order</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<input
-    type="text"
-    id="phone"
-    placeholder="Enter Phone Number">
+<head>
 
-<button onclick="trackOrder()">
-    Track Order
-</button>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div id="result"></div>
+    <title>Track Order | A.U SHOP</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="track-container">
+
+    <h1>📦 Track Your Order</h1>
+
+    <p>Enter your phone number to view your orders.</p>
+
+    <input
+        type="text"
+        id="phone"
+        placeholder="Enter Phone Number">
+
+    <button onclick="trackOrder()">
+        🔍 Track Order
+    </button>
+
+    <div id="result"></div>
+
+</div>
 
 <script src="track.js"></script>
+
+</body>
+
+</html>

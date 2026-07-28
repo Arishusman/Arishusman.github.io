@@ -46,6 +46,10 @@
 
         <div class="product-buttons">
 
+             <button id="wishlistBtn">
+        ❤️ Wishlist
+    </button>
+
 
             <div class="delivery-info">
 
@@ -106,7 +110,6 @@
         };
 
 
-
         document.getElementById("wishlistBtn").onclick = function () {
 
             let wishlist =
@@ -156,6 +159,13 @@ function decreaseQty(){
     }
 
 }
+
+document.getElementById("wishlistBtn").onclick = function () {
+
+    toggleWishlist(product);
+
+};
+
         };
 
     </script>

@@ -3108,3 +3108,148 @@ QUANTITY BOX
     transform:scale(1.08);
 
 }
+
+/* =========================
+TRACK ORDER PAGE
+========================= */
+
+.track-container{
+
+    width:90%;
+    max-width:650px;
+
+    margin:60px auto;
+
+    padding:35px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:2px solid gold;
+
+    border-radius:25px;
+
+    text-align:center;
+
+}
+
+.track-container h1{
+
+    color:gold;
+
+    margin-bottom:10px;
+
+}
+
+.track-container p{
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+.track-container input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+    font-size:16px;
+
+    box-sizing:border-box;
+
+}
+
+.track-container button{
+
+    width:100%;
+
+    padding:15px;
+
+    background:gold;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.track-container button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.track-card{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.3);
+
+    border-radius:15px;
+
+    text-align:left;
+
+    color:white;
+
+    border:1px solid gold;
+
+}
+
+.track-card h3{
+
+    color:gold;
+
+    margin-bottom:15px;
+
+}
+
+.order-summary{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    background:rgba(255,255,255,.08);
+
+    border:2px solid gold;
+
+    border-radius:15px;
+
+    color:white;
+
+}
+
+.order-summary h2{
+
+    color:gold;
+
+    margin-bottom:15px;
+
+}
+
+.order-summary h3{
+
+    color:#25D366;
+
+    margin-top:15px;
+
+}

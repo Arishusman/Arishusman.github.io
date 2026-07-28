@@ -151,6 +151,7 @@ window.onload = function () {
     let selected = document.getElementById("selectedProduct");
 
     if (selected) {
+     
 
         let items = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -159,6 +160,35 @@ window.onload = function () {
             selected.innerHTML = "";
 
             items.forEach(item => {
+
+
+               items.forEach(item => {
+
+
+    const SHIPPING_CHARGE = 260;
+
+    const subTotal = item.price;
+
+    const grandTotal = subTotal + SHIPPING_CHARGE;
+
+    selected.innerHTML += `
+        <p>
+            <b>Product:</b> ${item.name}<br>
+            <b>Price:</b> Rs. ${item.price}
+        </p>
+        <hr>
+    `;
+
+    document.getElementById("subTotal").innerHTML =
+        "Product Total : Rs. " + subTotal;
+
+    document.getElementById("shipping").innerHTML =
+        "Shipping : Rs. " + SHIPPING_CHARGE;
+
+    document.getElementById("grandTotal").innerHTML =
+        "Grand Total : Rs. " + grandTotal;
+
+});
 
                 selected.innerHTML += `
                     <p>
@@ -259,7 +289,11 @@ async function placeOrder() {
 
     const product = products[0];
 
-    const totalPrice = product.price * quantity;
+     const subTotal = product.price * quantity;
+
+const shipping = 260;
+
+const totalPrice = subTotal + shipping;
 
     const orderData = {
 
@@ -427,11 +461,13 @@ async function loadProducts() {
             🛒 Add To Cart
         </button>
 
-        <button
-class="wishlist-btn ${isInWishlist(product.name) ? 'active' : ''}"
-onclick='event.stopPropagation(); toggleWishlist(${JSON.stringify(product)})'>
-❤️
-</button>
+    </div class="card-buttons">
+
+    <button onclick="event.stopPropagation(); addCart('${product.name}', ${product.price})">
+        🛒 Add To Cart
+    </button>
+
+</div>
 
     </div>
 
