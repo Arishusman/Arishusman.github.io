@@ -3301,3 +3301,57 @@ TRACK ORDER PAGE
 .product-buttons button{
     flex:1;
 }
+
+.quantity-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.quantity-box button{
+    width:40px;
+    height:40px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.quantity-box span{
+    min-width:30px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.action-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    width:100%;
+}
+
+.action-buttons button{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quantity-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin:20px 0;
+}
+
+.product-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.product-buttons button{
+    flex:1;
+}

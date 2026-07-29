@@ -25,7 +25,7 @@
 
 
         <h2 id="productPrice"></h2>
-        <div class="quantity-box"></div>
+        <div class="quantity-box">
 
     <button onclick="decreaseQty()">−</button>
 
@@ -41,14 +41,7 @@
 
         <p id="productDescription"></p>
 
-        <div class="product-buttons">
-
-             <button id="wishlistBtn">
-        ❤️ Wishlist
-    </button>
-
-
-            <div class="delivery-info">
+        <div class="delivery-info">
 
     🚚 Delivery all over Pakistan
 
@@ -58,13 +51,17 @@
 
 </div>
 
-        
+<div class="product-buttons">
 
-            <button id="cartBtn">
-                🛒 Add To Cart
-            </button>
+    <button id="cartBtn">
+        🛒 Add To Cart
+    </button>
 
-        </div>
+    <button id="wishlistBtn">
+        ❤️ Wishlist
+    </button>
+
+</div>
 
         <button onclick="history.back()">
             ⬅ Back
@@ -93,11 +90,8 @@
 
 
 
-        document.getElementById("cartBtn").onclick = function () {
-
-            addCart(product.name, product.price, quantity);
-
-        };
+        
+        
              if (!product) {
 
             window.location.href = "index.html";
