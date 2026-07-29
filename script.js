@@ -461,7 +461,8 @@ async function loadProducts() {
         if (cricketContainer) cricketContainer.innerHTML = "";
         if (hockeyContainer) hockeyContainer.innerHTML = "";
 
-        data.products.forEach(product => {
+        
+    data.products.forEach(product => {
 
           const card = `
 <div class="card product" onclick='openProductPage(${JSON.stringify(product)})'>
@@ -478,7 +479,6 @@ async function loadProducts() {
             🛒 Add To Cart
         </button>
 
-    </div>
 
 </div>
 
@@ -512,43 +512,18 @@ else if (product.category === "Hockey" && hockeyContainer) {
 
 }
 
+
 function openProductPage(product) {
 
-    const productPage = document.getElementById("product-page");
+    localStorage.setItem(
+        "selectedProduct",
+        JSON.stringify(product)
+    );
 
-    productPage.innerHTML = `
-        <!-- YAHAN purana HTML remove karke naya HTML paste karna hai -->
+    window.location.href = "product.html";
 
-        <div class="product-details">
-
-            <img src="${product.image}" class="product-image">
-
-            <h2>${product.name}</h2>
-
-            <p>${product.description}</p>
-
-            <div class="quantity-box">
-                <button onclick="changeQty(-1)">-</button>
-                <span id="qty">1</span>
-                <button onclick="changeQty(1)">+</button>
-            </div>
-
-            <div class="action-buttons">
-                <button onclick="addCart('${product.name}', ${product.price})">
-                    Add to Cart
-                </button>
-
-                <button onclick="toggleWishlist('${product.name}')">
-                    ❤️ Wishlist
-                </button>
-            </div>
-        window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-});
-        </div>
-    `;
 }
+
 
 
 // =====================================

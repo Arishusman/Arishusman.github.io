@@ -81,12 +81,7 @@
 
         const product = JSON.parse(localStorage.getItem("selectedProduct"));
 
-        if (!product) {
-
-            window.location.href = "index.html";
-
-        }
-
+        
         document.getElementById("productImage").src =
             product.image || "https://via.placeholder.com/300";
 
@@ -106,6 +101,11 @@
             addCart(product.name, product.price);
 
         };
+             if (!product) {
+
+            window.location.href = "index.html";
+
+        }
 
 
         document.getElementById("wishlistBtn").onclick = function () {
