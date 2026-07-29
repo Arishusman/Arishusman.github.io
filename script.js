@@ -26,7 +26,11 @@ function addCart(productName, productPrice, productqty) {
 
     showToast("✅ Product added to cart!");
 
+setTimeout(() => {
+
     window.location.href = "checkout.html";
+
+}, 800);
 }
 
 // =====================================
@@ -176,22 +180,29 @@ window.onload = function () {
 
             selected.innerHTML = "";
 
-            items.forEach(item => {
+            const SHIPPING_CHARGE = 260;
+
+selected.innerHTML = "";
+
+const qtyInput = document.getElementById("quantity");
+qtyInput.value = items[0].qty || 1;
 
 
-               items.forEach(item => {
+function updateSummary() {
 
+    const qty = Number(qtyInput.value) || 1;
 
-    const SHIPPING_CHARGE = 260;
+    const item = items[0];
 
-    const subTotal = item.price;
+    const subTotal = item.price * qty;
 
     const grandTotal = subTotal + SHIPPING_CHARGE;
 
-    selected.innerHTML += `
+    selected.innerHTML = `
         <p>
             <b>Product:</b> ${item.name}<br>
-            <b>Price:</b> Rs. ${item.price}
+            <b>Price:</b> Rs. ${item.price}<br>
+            <b>Quantity:</b> ${qty}
         </p>
         <hr>
     `;
@@ -204,19 +215,11 @@ window.onload = function () {
 
     document.getElementById("grandTotal").innerHTML =
         "Grand Total : Rs. " + grandTotal;
+}
 
-});
+updateSummary();
 
-                selected.innerHTML += `
-                    <p>
-                        <b>Product:</b> ${item.name}<br>
-                        <b>Price:</b> Rs. ${item.price}
-                    </p>
-                    <hr>
-                `;
-
-            });
-
+qtyInput.addEventListener("input", updateSummary);
         }
 
         else {
