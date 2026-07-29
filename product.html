@@ -14,7 +14,18 @@
 
 <body>
 
-    <div class="quantity-box">
+    
+    <div class="product-details">
+
+        <img id="productImage" src="" alt="Product Image">
+
+        <h1 id="productName"></h1>
+        
+        
+
+
+        <h2 id="productPrice"></h2>
+        <div class="quantity-box"></div>
 
     <button onclick="decreaseQty()">−</button>
 
@@ -23,20 +34,6 @@
     <button onclick="increaseQty()">+</button>
 
 </div>
-
-    <div class="product-details">
-
-        <img id="productImage" src="" alt="Product Image">
-
-        <h1 id="productName"></h1>
-        
-        <p class="rating">
-
-⭐⭐⭐⭐⭐ 4.9 / 5
-
-</p>
-
-        <h2 id="productPrice"></h2>
 
         <p class="stock">
     ✅ In Stock
@@ -98,7 +95,7 @@
 
         document.getElementById("cartBtn").onclick = function () {
 
-            addCart(product.name, product.price);
+            addCart(product.name, product.price, quantity);
 
         };
              if (!product) {
@@ -108,63 +105,34 @@
         }
 
 
-        document.getElementById("wishlistBtn").onclick = function () {
+        // Quantity
+let quantity = 1;
 
-            let wishlist =
-                JSON.parse(localStorage.getItem("wishlist")) || [];
-
-            let exists =
-                wishlist.find(item => item.name === product.name);
-
-            if (!exists) {
-
-                wishlist.push(product);
-
-                localStorage.setItem(
-                    "wishlist",
-                    JSON.stringify(wishlist)
-                );
-
-                showToast("❤️ Added To Wishlist");
-
-            }
-
-            else {
-
-                alert("Already In Wishlist");
-
-            }
-            
-
-            let quantity = 1;
-
-function increaseQty(){
-
+function increaseQty() {
     quantity++;
-
     document.getElementById("qty").innerText = quantity;
-
 }
 
-function decreaseQty(){
-
-    if(quantity > 1){
-
+function decreaseQty() {
+    if (quantity > 1) {
         quantity--;
-
         document.getElementById("qty").innerText = quantity;
-
     }
-
 }
 
-document.getElementById("wishlistBtn").onclick = function () {
-
-    toggleWishlist(product);
-
+// Add To Cart
+document.getElementById("cartBtn").onclick = function () {
+    addCart(product.name, product.price, quantity);
 };
 
-        };
+// Wishlist
+document.getElementById("wishlistBtn").onclick = function () {
+    toggleWishlist(product);
+};
+
+
+
+ 
 
     </script>
 

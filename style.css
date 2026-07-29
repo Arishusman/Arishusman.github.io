@@ -3289,3 +3289,15 @@ TRACK ORDER PAGE
 #toast.show{
     opacity: 1;
 }
+
+.product-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+}
+
+.product-buttons button{
+    flex:1;
+}
