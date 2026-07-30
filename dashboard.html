@@ -4,6 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+if(localStorage.getItem("adminLoggedIn") !== "true"){
+    window.location.href = "admin-login.html";
+}
+
 <title>A.U SHOP - Admin Dashboard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -554,10 +559,61 @@
             <div class="modalButtons">
                 <button class="redBtn" type="button" id="confirmCancel">Yes, Cancel</button>
                 <button class="blueBtn closeModal" type="button">No</button>
+
+
+                
             </div>
         </div>
     </div>
 </div>
+
+
+
+    <!-- Quick Product Management -->
+
+<section class="productSection">
+
+<div class="sectionHeader">
+<h2>
+<i class="fa-solid fa-box-open"></i>
+Products
+</h2>
+</div>
+
+<div class="productButtons">
+
+<button id="quickProductsBtn" class="goldBtn">
+<i class="fa-solid fa-box"></i>
+Manage Products
+</button>
+
+</div>
+
+</section>
+
+
+<!-- Quick Category Management -->
+
+<section class="categorySection">
+
+<div class="sectionHeader">
+<h2>
+<i class="fa-solid fa-layer-group"></i>
+Categories
+</h2>
+</div>
+
+<div class="categoryButtons">
+
+<button id="quickCategoriesBtn" class="blueBtn">
+<i class="fa-solid fa-layer-group"></i>
+Manage Categories
+</button>
+
+</div>
+
+</section>
+
 
 <div class="modal" id="invoiceModal">
     <div class="modalContent largeModal">

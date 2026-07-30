@@ -2057,23 +2057,62 @@ button,
 
 }
 
+
+
 @media(max-width:768px){
-
-.navbar{
-
-    padding:15px;
-
-}
-
-.leftNav h1{
-
-    font-size:22px;
-
-}
 
 .dashboardCards{
 
-    grid-template-columns:1fr;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+
+}
+
+.card{
+
+    padding:12px;
+    min-height:95px;
+    gap:12px;
+    border-radius:15px;
+
+}
+
+.cardIcon{
+
+    width:48px;
+    height:48px;
+    font-size:20px;
+
+}
+
+.cardInfo h4{
+
+    font-size:12px;
+    margin-bottom:4px;
+
+}
+
+.cardInfo h2{
+
+    font-size:20px;
+    margin-bottom:4px;
+
+}
+
+.cardInfo p{
+
+    font-size:10px;
+
+}
+
+/* Last Card (Delivered) */
+
+.dashboardCards .card:last-child{
+
+    grid-column:1/-1;
+    width:55%;
+    margin:auto;
 
 }
 
@@ -2098,7 +2137,6 @@ button,
 .modalContent{
 
     width:95%;
-
     padding:20px;
 
 }
@@ -2281,4 +2319,48 @@ body[data-theme="light"] .cardInfo h4,
 body[data-theme="light"] .orderTable td,
 body[data-theme="light"] .formGroup label{
     color:#111;
+}
+
+/* ===========================
+   MOBILE DASHBOARD
+=========================== */
+
+@media (max-width:768px){
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.dashboard .card{
+    padding:12px;
+    border-radius:16px;
+    min-height:85px;
+}
+
+.dashboard .card h3{
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.dashboard .card h2{
+    font-size:22px;
+}
+
+.dashboard .card p{
+    font-size:11px;
+}
+
+/* Last Card (Delivered) */
+.dashboard .card:last-child{
+    grid-column:1 / -1;
+    width:60%;
+    margin:0 auto;
+}
+} 
+#dashboardView #productsSection,
+#dashboardView #categoriesSection{
+    display:block;
 }

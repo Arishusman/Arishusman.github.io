@@ -1101,13 +1101,16 @@ function loadSettings() {
     }
 }
 
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-        if (!confirm("Logout?")) return;
-        localStorage.removeItem("adminLoggedIn");
-        window.location.href = "admin.html";
-    });
-}
+logoutBtn.addEventListener("click", () => {
+
+    if (!confirm("Logout?")) return;
+
+    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("adminName");
+
+    window.location.href = "admin-login.html";
+
+});
 
 // ======================================
 // Initialize
@@ -1133,3 +1136,18 @@ window.deleteCategory = deleteCategory;
 window.assignProduct = assignProduct;
 window.editProduct = editProduct;
 window.deleteProduct = deleteProduct;
+
+const quickProductsBtn = document.getElementById("quickProductsBtn");
+const quickCategoriesBtn = document.getElementById("quickCategoriesBtn");
+
+if (quickProductsBtn) {
+    quickProductsBtn.addEventListener("click", () => {
+        productsMenu.click();
+    });
+}
+
+if (quickCategoriesBtn) {
+    quickCategoriesBtn.addEventListener("click", () => {
+        categoriesMenu.click();
+    });
+}
