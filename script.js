@@ -652,3 +652,15 @@ function removeWishlist(name) {
     }
 
 }
+
+// Premium Loader
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.body.classList.add("loaded");
+
+},2200);
+
+});
