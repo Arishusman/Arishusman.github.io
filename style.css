@@ -3355,3 +3355,10 @@ TRACK ORDER PAGE
 .product-buttons button{
     flex:1;
 }
+
+.logo img{
+    height:60px;
+    width:auto;
+    object-fit:contain;
+    display:block;
+}
