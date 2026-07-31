@@ -664,3 +664,19 @@ document.body.classList.add("loaded");
 },2200);
 
 });
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+const intro=document.getElementById("intro");
+
+if(intro){
+
+intro.style.display="none";
+
+}
+
+},4000);
+
+});
