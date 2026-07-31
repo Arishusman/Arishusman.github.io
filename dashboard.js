@@ -3,9 +3,9 @@
 // dashboard.js
 // ======================================
 
-const ORDER_API = "http://localhost:5000/api/orders";
-const PRODUCT_API = "http://localhost:5000/api/products";
-const CATEGORY_API = "http://localhost:5000/api/categories";
+const ORDER_API = "https://a-u-shop-production.up.railway.app/api/orders";
+const PRODUCT_API = "https://a-u-shop-production.up.railway.app/api/products";
+const CATEGORY_API = "https://a-u-shop-production.up.railway.app/api/categories";
 
 let orders = [];
 let selectedOrder = null;

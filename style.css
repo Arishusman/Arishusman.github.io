@@ -2102,9 +2102,9 @@ footer{
 
 
 .logo{
-
-    font-size:26px;
-
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 
 
@@ -3369,39 +3369,19 @@ TRACK ORDER PAGE
 }
 
 .logo img{
-    height:60px;
-    width:auto;
-    object-fit:contain;
-    display:block;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #FFD700;
+    box-shadow:0 0 20px #FFD700;
 }
 
 /* ===========================
    PREMIUM LOADER
 =========================== */
 
-#loader{
 
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:#050505;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:999999;
-
-transition:1s;
-
-}
 
 .loader-box{
 
@@ -3510,14 +3490,6 @@ transform:translateY(-10px);
 transform:translateY(0);
 
 }
-
-}
-
-body.loaded #loader{
-
-opacity:0;
-
-visibility:hidden;
 
 }
 
@@ -3690,15 +3662,12 @@ border-bottom:1px solid rgba(255,215,0,.25);
 }
 
 .logo img{
-
-height:85px;
-
-width:auto;
-
-filter:drop-shadow(0 0 10px rgba(255,215,0,.7));
-
-transition:.3s;
-
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #FFD700;
+    box-shadow:0 0 20px #FFD700;
 }
 
 .logo img:hover{
@@ -3708,27 +3677,22 @@ transform:scale(1.08);
 }
 
 .logo img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #FFD700;
+    box-shadow:0 0 20px #FFD700;
+}
 
-width:75px;
-
-height:75px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-background:#fff;
-
-padding:6px;
-
-border:3px solid #FFD700;
-
-box-shadow:
-0 0 15px rgba(255,215,0,.5),
-0 0 30px rgba(255,215,0,.3);
-
-transition:.4s;
-
+.logo h1,
+.logo span{
+    font-family:'Orbitron',sans-serif;
+    font-size:42px;
+    color:#FFD700;
+    margin:0;
+    line-height:1;
+    white-space:nowrap;
 }
 
 .logo img:hover{
@@ -3854,16 +3818,191 @@ left:0;
 width:100%;
 height:100%;
 
-background:linear-gradient(135deg,#000,#081229,#000);
+background:radial-gradient(circle at center,#111,#000);
 
 display:flex;
-
 justify-content:center;
 align-items:center;
 
 z-index:999999;
 
-animation:introHide 4s forwards;
+overflow:hidden;
+
+}
+
+#intro::before{
+
+content:"";
+
+position:absolute;
+
+width:200%;
+height:200%;
+
+background:
+radial-gradient(circle,#FFD70022 1px,transparent 1px);
+
+background-size:35px 35px;
+
+animation:particles 18s linear infinite;
+
+opacity:.5;
+
+}
+
+@keyframes particles{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-300px);
+
+}
+
+}
+
+.intro-content{
+
+position:relative;
+
+z-index:2;
+
+text-align:center;
+
+}
+
+#brandText{
+
+font-family:'Orbitron';
+
+font-size:75px;
+
+color:#FFD700;
+
+letter-spacing:12px;
+
+margin:0;
+
+text-shadow:0 0 25px gold;
+
+}
+
+#tagline{
+
+margin-top:25px;
+
+color:white;
+
+font-size:22px;
+
+letter-spacing:6px;
+
+opacity:0;
+
+transition:.8s;
+
+}
+
+.intro-hide{
+
+opacity:0;
+
+visibility:hidden;
+
+transition:1s;
+
+}
+
+#intro::before{
+
+content:"";
+
+position:absolute;
+
+width:200%;
+height:200%;
+
+background:
+radial-gradient(circle,#FFD70022 1px,transparent 1px);
+
+background-size:35px 35px;
+
+animation:particles 18s linear infinite;
+
+opacity:.5;
+
+}
+
+@keyframes particles{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-300px);
+
+}
+
+}
+
+.intro-content{
+
+position:relative;
+
+z-index:2;
+
+text-align:center;
+
+}
+
+#brandText{
+
+font-family:'Orbitron';
+
+font-size:75px;
+
+color:#FFD700;
+
+letter-spacing:12px;
+
+margin:0;
+
+text-shadow:0 0 25px gold;
+
+}
+
+#tagline{
+
+margin-top:25px;
+
+color:white;
+
+font-size:22px;
+
+letter-spacing:6px;
+
+opacity:0;
+
+transition:.8s;
+
+}
+
+.intro-hide{
+
+opacity:0;
+
+visibility:hidden;
+
+transition:1s;
 
 }
 
@@ -3968,4 +4107,123 @@ visibility:hidden;
 
 }
 
+}
+
+/* PRODUCT PAGE */
+
+.product-details{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    box-sizing:border-box;
+}
+
+.product-details img{
+    width:100%;
+    max-width:420px;
+    border-radius:20px;
+}
+
+.product-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+    width:100%;
+}
+
+.product-buttons button{
+    flex:1;
+    min-width:150px;
+}
+
+@media (max-width:768px){
+
+.product-details{
+    width:100%;
+    margin:0;
+    padding:20px;
+    min-height:100vh;
+    border-radius:0;
+}
+
+.product-details img{
+    width:100%;
+    max-width:320px;
+}
+
+.product-buttons{
+    flex-direction:column;
+}
+
+.product-buttons button{
+    width:100%;
+}
+
+}
+
+#introLogo{
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+border:3px solid #FFD700;
+
+box-shadow:0 0 30px rgba(255,215,0,.7);
+
+margin-bottom:25px;
+
+opacity:0;
+
+transform:scale(.3);
+
+animation:logoAppear .8s ease forwards;
+
+}
+
+@keyframes logoAppear{
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+.logo{
+display:flex !important;
+align-items:center !important;
+justify-content:flex-start;
+flex-direction:row !important;
+gap:18px;
+}
+
+.logo img{
+width:85px;
+height:85px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #FFD700;
+box-shadow:0 0 18px #FFD700;
+flex-shrink:0;
+}
+
+.logo h1{
+margin:0;
+font-family:'Orbitron',sans-serif;
+font-size:42px;
+color:#FFD700;
+white-space:nowrap;
+line-height:1;
+display:inline-block;
 }

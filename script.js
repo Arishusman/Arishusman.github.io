@@ -655,28 +655,43 @@ function removeWishlist(name) {
 
 // Premium Loader
 
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-
-document.body.classList.add("loaded");
-
-},2200);
-
-});
 
 window.addEventListener("load",()=>{
 
+const brand=document.getElementById("brandText");
+
+const tag=document.getElementById("tagline");
+
+const text="A.U SHOP";
+
+let i=0;
+
+let typing=setInterval(()=>{
+
+brand.innerHTML+=text.charAt(i);
+
+i++;
+
+if(i>=text.length){
+
+clearInterval(typing);
+
 setTimeout(()=>{
 
-const intro=document.getElementById("intro");
+tag.style.opacity=1;
 
-if(intro){
+tag.innerHTML="PREMIUM ONLINE SHOPPING";
 
-intro.style.display="none";
+},400);
 
 }
 
-},4000);
+},220);
+
+setTimeout(()=>{
+
+document.getElementById("intro").classList.add("intro-hide");
+
+},3000);
 
 });

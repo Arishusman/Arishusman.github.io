@@ -2,7 +2,7 @@
 // A.U SHOP ADMIN LOGIN
 // =====================================
 
-const API_URL = "http://localhost:5000/api/admin/login";
+const API_URL ="https://a-u-shop-production.up.railway.app/api/admin/login";
 
 const loginForm = document.getElementById("loginForm");
 const username = document.getElementById("username");
