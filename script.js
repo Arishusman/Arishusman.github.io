@@ -329,7 +329,7 @@ const totalPrice = subTotal + shipping;
           console.log(orderData);
     try {
 
-        const response = await fetch("https://a-u-shop-production.up.railway.app/api/orders", {
+        const response = await fetch("https://a-u-shop-production-bae8.up.railway.app/api/orders", {
 
             method: "POST",
 
@@ -447,7 +447,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-const PRODUCT_API = "https://a-u-shop-production.up.railway.app/api/products";
+const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
 
 async function loadProducts() {
 

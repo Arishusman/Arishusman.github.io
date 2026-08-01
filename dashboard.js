@@ -4,9 +4,9 @@
 // ======================================
 console.log("DASHBOARD JS LOADED");
 
-const ORDER_API = "https://a-u-shop-production.up.railway.app/api/orders";
-const PRODUCT_API = "https://a-u-shop-production.up.railway.app/api/products";
-const CATEGORY_API = "https://a-u-shop-production.up.railway.app/api/categories";
+const ORDER_API = "https://a-u-shop-production-bae8.up.railway.app/api/orders";
+const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
+const CATEGORY_API = "https://a-u-shop-production-bae8.up.railway.app/api/categories";
 
 let orders = [];
 let selectedOrder = null;
@@ -219,7 +219,7 @@ dashboardMenu.addEventListener("click", () => {
 ordersMenu.addEventListener("click", () => {
 
     showSection(ordersSection);
-    loadOrders();
+    loadDashboard();
 
 });
 

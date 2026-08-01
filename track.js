@@ -2,7 +2,7 @@ async function trackOrder() {
 
     const phone = document.getElementById("phone").value;
 
-    const response = await fetch("https://a-u-shop-production.up.railway.app/api/orders");
+    const response = await fetch("https://a-u-shop-production-bae8.up.railway.app/api/orders");
 
     const data = await response.json();
 
