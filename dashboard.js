@@ -2,6 +2,7 @@
 // A.U SHOP ADMIN DASHBOARD
 // dashboard.js
 // ======================================
+console.log("DASHBOARD JS LOADED");
 
 const ORDER_API = "https://a-u-shop-production.up.railway.app/api/orders";
 const PRODUCT_API = "https://a-u-shop-production.up.railway.app/api/products";
@@ -81,23 +82,70 @@ const editCategoryList = document.getElementById("editCategoryList");
 const assignContainer = document.getElementById("assignContainer");
 const categoryForm = document.getElementById("categoryForm");
 
-const addProductBtn = document.getElementById("addProductBtn");
-const editProductBtn = document.getElementById("editProductBtn");
-const addProductSection = document.getElementById("addProductSection");
-const editProductSection = document.getElementById("editProductSection");
+
+const editCategoryForm = document.getElementById("editCategoryForm");
+
+const productFormSection = document.getElementById("productFormSection");
 const editProductForm = document.getElementById("editProductForm");
+
 const productForm = document.getElementById("productForm");
 const updateProductForm = document.getElementById("updateProductForm");
+
+
+if (updateProductForm) {
+    updateProductForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id = document.getElementById("editProductId").value;
+
+        const formData = new FormData();
+
+        formData.append("name", document.getElementById("editProductName").value.trim());
+        formData.append("category", document.getElementById("editProductCategory").value);
+        formData.append("description", document.getElementById("editProductDescription").value.trim());
+        formData.append("price", document.getElementById("editProductPrice").value);
+        formData.append("discount", document.getElementById("editProductDiscount").value);
+        formData.append("stock", document.getElementById("editProductStock").value);
+        formData.append("status", document.getElementById("editProductStatus").value);
+
+        const imageFile = document.getElementById("editProductImage").files[0];
+
+        if (imageFile) {
+            formData.append("image", imageFile);
+        }
+
+        try {
+            const response = await fetch(`${PRODUCT_API}/${id}`, {
+                method: "PUT",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                alert("Product Update Failed");
+                return;
+            }
+
+            alert("Product Updated Successfully");
+            editProductForm.style.display = "none";
+            loadProducts();
+
+        } catch (error) {
+            console.log(error);
+            alert("Server Error");
+        }
+    });
+}
+
 const productGrid = document.getElementById("productGrid");
+const productList = document.getElementById("productList");
+
 const searchProduct = document.getElementById("searchProduct");
-const productCategory = document.getElementById("productCategory");
-const editProductCategory = document.getElementById("editProductCategory");
 
 const settingsForm = document.getElementById("settingsForm");
-const themeSelect = document.getElementById("themeSelect");
 
-// ======================================
-// Helpers
+
 // ======================================
 
 function normalizeStatus(status) {
@@ -560,51 +608,10 @@ if (cancelOrderBtn) {
         cancelModal.style.display = "flex";
 
 
-        if (deleteOrderBtn) {
-    deleteOrderBtn.addEventListener("click", async () => {
-
-        if (!selectedOrder) return;
-
-        orderMenu.style.display = "none";
-
-        const confirmDelete = confirm(
-            "Are you sure you want to permanently delete this order?"
-        );
-
-        if (!confirmDelete) return;
-
-        try {
-
-            const response = await fetch(
-                `${ORDER_API}/${selectedOrder._id}`,
-                {
-                    method: "DELETE"
-                }
-            );
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                alert(data.message || "Delete Failed");
-                return;
-            }
-
-            alert("✅ Order Deleted Successfully");
-
-            loadDashboard();
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert("❌ Server Connection Failed");
-
-        }
-
+        
     });
 }
-    });
-}
+    
 
 if (confirmCancel) {
     confirmCancel.addEventListener("click", async () => {
@@ -876,11 +883,11 @@ if (editProductBtn) {
         loadProducts();
     });
 }
-
+console.log("PRODUCT FORM =", productForm);
 if (productForm) {
     productForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-
+        console.log("ADD PRODUCT FUNCTION RUNNING");
         const formData = new FormData();
 
         formData.append("name", document.getElementById("productName").value.trim());
@@ -896,6 +903,11 @@ if (productForm) {
         if (imageFile) {
             formData.append("image", imageFile);
         }
+        
+        if (imageFile) {
+    console.log("Image Name:", imageFile.name);
+    console.log("Image Size:", imageFile.size);
+}
 
         try {
 
@@ -991,52 +1003,7 @@ async function editProduct(id) {
     }
 }
 
-if (updateProductForm) {
-    updateProductForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
 
-        const id = document.getElementById("editProductId").value;
-        const imageFile = document.getElementById("editProductImage");
-        let image = "";
-
-        if (imageFile && imageFile.files && imageFile.files[0]) {
-            image = await fileToBase64(imageFile);
-        }
-
-        const body = {
-            name: document.getElementById("editProductName").value.trim(),
-            category: document.getElementById("editProductCategory").value,
-            description: document.getElementById("editProductDescription").value.trim(),
-            price: Number(document.getElementById("editProductPrice").value),
-            discount: Number(document.getElementById("editProductDiscount").value || 0),
-            stock: Number(document.getElementById("editProductStock").value || 0),
-            status: document.getElementById("editProductStatus").value
-        };
-
-        if (image) body.image = image;
-
-        try {
-            const response = await fetch(`${PRODUCT_API}/${id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            });
-
-            const data = await response.json();
-            if (!data.success) {
-                alert("Product Update Failed");
-                return;
-            }
-
-            alert("Product Updated Successfully");
-            editProductForm.style.display = "none";
-            loadProducts();
-        } catch (error) {
-            console.log(error);
-            alert("Server Error");
-        }
-    });
-}
 
 async function deleteProduct(id) {
     if (!confirm("Delete this product?")) return;
@@ -1053,10 +1020,13 @@ async function deleteProduct(id) {
         alert(data.message || "Product Deleted");
         loadProducts();
     } catch (error) {
-        console.log(error);
-        alert("Server Error");
-    }
+            console.log(error);
+            alert("Server Error");
+        }
+
+    
 }
+ 
 
 if (searchProduct) {
     searchProduct.addEventListener("keyup", () => {
@@ -1066,7 +1036,7 @@ if (searchProduct) {
             card.style.display = card.innerText.toLowerCase().includes(value) ? "block" : "none";
         });
     });
-}
+  }
 
 // ======================================
 // Settings + Logout
@@ -1139,6 +1109,13 @@ window.deleteProduct = deleteProduct;
 
 const quickProductsBtn = document.getElementById("quickProductsBtn");
 const quickCategoriesBtn = document.getElementById("quickCategoriesBtn");
+const testSaveBtn = document.getElementById("testSaveBtn");
+
+if(testSaveBtn){
+    testSaveBtn.addEventListener("click",()=>{
+        console.log("SAVE BUTTON CLICKED");
+    });
+}
 
 if (quickProductsBtn) {
     quickProductsBtn.addEventListener("click", () => {
