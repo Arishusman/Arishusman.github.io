@@ -77,7 +77,10 @@
     <script>
 
         const product = JSON.parse(localStorage.getItem("selectedProduct"));
-
+        
+        if (!product) {
+        window.location.href = "index.html";
+        }
         
         document.getElementById("productImage").src =
             product.image || "https://via.placeholder.com/300";

@@ -4200,30 +4200,35 @@ transform:scale(1);
 
 }
 
-.logo{
-display:flex !important;
-align-items:center !important;
-justify-content:flex-start;
-flex-direction:row !important;
-gap:18px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.logo img{
-width:85px;
-height:85px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #FFD700;
-box-shadow:0 0 18px #FFD700;
-flex-shrink:0;
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
 }
 
-.logo h1{
-margin:0;
-font-family:'Orbitron',sans-serif;
-font-size:42px;
-color:#FFD700;
-white-space:nowrap;
-line-height:1;
-display:inline-block;
+.logo h1 {
+    font-size: 28px;
+    margin: 0;
+    line-height: 1.2;
+}
+header {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+.search-section{
+    position: sticky;
+    top: 70px;          /* Agar navbar 70px height ka hai */
+    z-index: 9999;
+    background: #111;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0,0,0,.3);
 }
