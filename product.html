@@ -1,143 +1,360 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
-    
-    <title>Products | A.U SHOP</title>
-
-<meta name="description" content="Browse premium Law Books, Cricket Equipment and Hockey Products from A.U SHOP.">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="canonical" href="https://au-shop.netlify.app/product.html">
+<title>A.U SHOP | Product</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-    
-    <div class="product-details">
+<!-- NAVBAR -->
 
-        <img id="productImage" src="" alt="Product Image">
+<nav class="navbar">
 
-        <h1 id="productName"></h1>
-        
-        
+    <div class="logo">
 
+        <img src="logo.png" alt="Logo">
 
-        <h2 id="productPrice"></h2>
-        <div class="quantity-box">
-
-    <button onclick="decreaseQty()">−</button>
-
-    <span id="qty">1</span>
-
-    <button onclick="increaseQty()">+</button>
-
-</div>
-
-        <p class="stock">
-    ✅ In Stock
-</p>
-
-        <p id="productDescription"></p>
-
-        <div class="delivery-info">
-
-    🚚 Delivery all over Pakistan
-
-    <br><br>
-
-    ⏰ Delivery Time: 2–5 Days
-
-</div>
-
-<div class="product-buttons">
-
-    <button id="cartBtn">
-        🛒 Add To Cart
-    </button>
-
-    <button id="wishlistBtn">
-        ❤️ Wishlist
-    </button>
-
-</div>
-
-        <button onclick="history.back()">
-            ⬅ Back
-        </button>
+        <h1>A.U SHOP</h1>
 
     </div>
 
-    <script src="script.js"></script>
+    <div class="nav-links">
 
-    <script>
+        <a href="index.html">Home</a>
 
-        const product = JSON.parse(localStorage.getItem("selectedProduct"));
-        
-        if (!product) {
-        window.location.href = "index.html";
-        }
-        
-        document.getElementById("productImage").src =
-            product.image || "https://via.placeholder.com/300";
+        <a href="wishlist.html">Wishlist</a>
 
-        document.getElementById("productName").innerText =
-            product.name;
+        <a href="track.html">Track</a>
 
-        document.getElementById("productPrice").innerText =
-            "Rs. " + product.price;
+    </div>
 
-        document.getElementById("productDescription").innerText =
-            product.description || "No Description Available";
+</nav>
 
 
+<!-- PRODUCT SECTION -->
 
-        
-        
-             if (!product) {
+<section class="product-page">
 
-            window.location.href = "index.html";
+    <!-- LEFT -->
 
-        }
+    <div class="product-left">
+
+        <div class="main-image">
+
+            <img id="productImage" src="" alt="Product">
+
+        </div>
+
+    </div>
 
 
-        // Quantity
-let quantity = 1;
+    <!-- RIGHT -->
 
-function increaseQty() {
-    quantity++;
-    document.getElementById("qty").innerText = quantity;
+    <div class="product-right">
+
+        <h1 id="productName">
+            Loading...
+        </h1>
+
+        <div class="rating">
+
+            ⭐⭐⭐⭐⭐
+
+            <span>
+                4.9 (22 Reviews)
+            </span>
+
+        </div>
+
+        <h2 id="productPrice">
+
+            Rs. 0
+
+        </h2>
+
+        <p class="stock">
+
+            ✅ In Stock
+
+        </p>
+
+        <hr>
+
+        <h3>Description</h3>
+
+        <p id="productDescription">
+
+            Product Description
+
+        </p>
+
+        <hr>
+
+        <div class="delivery-box">
+
+            <p>🚚 Free Delivery All Over Pakistan</p>
+
+            <p>🔒 Secure Checkout</p>
+
+            <p>↩ 7 Days Easy Return</p>
+
+        </div>
+
+        <div class="qty">
+
+            <label>
+
+                Quantity
+
+            </label>
+
+            <input
+                id="qty"
+                type="number"
+                value="1"
+                min="1"
+            >
+
+        </div>
+
+        <div class="product-buttons">
+
+            <button id="cartBtn">
+
+                🛒 Add To Cart
+
+            </button>
+
+            <button id="buyBtn">
+
+                ⚡ Buy Now
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RELATED PRODUCTS -->
+
+<section>
+
+    <h2 class="section-title">
+
+        Related Products
+
+    </h2>
+
+    <div
+        class="products"
+        id="relatedProducts"
+    >
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-links">
+
+<a href="index.html">
+
+Home
+
+</a>
+
+<a href="wishlist.html">
+
+Wishlist
+
+</a>
+
+<a href="checkout.html">
+
+Checkout
+
+</a>
+
+</div>
+
+<p>
+
+© 2026 A.U SHOP
+
+</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+
+const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
+
+
+    // ==========================================
+// PRODUCT PAGE - PART 3
+// ==========================================
+
+const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(!product){
+
+    window.location.href="index.html";
+
 }
 
-function decreaseQty() {
-    if (quantity > 1) {
-        quantity--;
-        document.getElementById("qty").innerText = quantity;
+else{
+
+    document.getElementById("productImage").src =
+        product.image || "https://via.placeholder.com/500";
+
+    document.getElementById("productName").innerText =
+        product.name;
+
+    document.getElementById("productPrice").innerText =
+        "Rs. " + product.price;
+
+    document.getElementById("productDescription").innerText =
+        product.description || "No description available.";
+
+}
+// Quantity
+
+const qtyInput = document.getElementById("qty");
+
+document.getElementById("cartBtn").onclick=function(){
+
+    const qty=parseInt(qtyInput.value)||1;
+
+    addCart(
+        product.name,
+        product.price,
+        qty
+    );
+
+};
+
+// Buy Now
+
+document.getElementById("buyBtn").onclick=function(){
+
+    const qty=parseInt(qtyInput.value)||1;
+
+    localStorage.setItem("cart",JSON.stringify([{
+
+        name:product.name,
+        price:product.price,
+        qty:qty
+
+    }]));
+
+    window.location.href="checkout.html";
+
+};
+
+
+// ===========================
+// IMAGE ZOOM
+// ===========================
+
+const image=document.getElementById("productImage");
+
+if(image){
+
+    image.addEventListener("mousemove",()=>{
+
+        image.style.transform="scale(1.25)";
+
+    });
+
+    image.addEventListener("mouseleave",()=>{
+
+        image.style.transform="scale(1)";
+
+    });
+
+}
+
+// ===========================
+// RELATED PRODUCTS
+// ===========================
+
+async function loadRelatedProducts(){
+
+    try{
+
+        const response=await fetch(PRODUCT_API);
+
+        const data=await response.json();
+
+        const container=document.getElementById("relatedProducts");
+
+        container.innerHTML="";
+
+        data.products
+        .filter(p=>p.category===product.category && p._id!==product._id)
+        .slice(0,4)
+        .forEach(item=>{
+
+            container.innerHTML+=`
+
+            <div class="card product"
+            onclick='openProductPage(${JSON.stringify(item)})'>
+
+                <img src="${item.image || 'https://via.placeholder.com/250'}">
+
+                <h3>${item.name}</h3>
+
+                <p>Rs. ${item.price}</p>
+
+                <div class="card-buttons">
+
+                    <button
+                    onclick="event.stopPropagation();
+                    addCart('${item.name}',${item.price},1)">
+
+                        🛒 Add To Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
     }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
 }
 
-// Add To Cart
-document.getElementById("cartBtn").onclick = function () {
-    addCart(product.name, product.price, quantity);
-};
+loadRelatedProducts();
 
-// Wishlist
-document.getElementById("wishlistBtn").onclick = function () {
-    toggleWishlist(product);
-};
+</script>
 
-
-
- 
-
-    </script>
-
-<div id="toast"></div>
 
 </body>
-
 </html>

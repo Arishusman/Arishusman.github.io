@@ -12,74 +12,99 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // ADD TO CART
 // =====================================
 
-function addCart(productName, productPrice, productqty) {
+function addCart(productName, productPrice, productQty = 1) {
 
-    const product = {
-        name: productName,
-        price: productPrice,
-        qty: productqty
-    };
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart = [product];
+    const existing = cart.find(item => item.name === productName);
+
+    if (existing) {
+
+        existing.qty += productQty;
+
+    } else {
+
+        cart.push({
+
+            name: productName,
+
+            price: productPrice,
+
+            qty: productQty
+
+        });
+
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    showToast("✅ Product added to cart!");
+    showToast("🛒 Product Added To Cart");
 
-setTimeout(() => {
-
-    window.location.href = "checkout.html";
-
-}, 800);
 }
 
 // =====================================
 // SEARCH SYSTEM
 // =====================================
 
-function searchProduct() {
+function searchProduct(){
 
-    let input = document
-        .getElementById("searchBox")
-        .value
-        .toLowerCase()
-        .trim();
+const input=document.getElementById("searchBox").value
+.toLowerCase()
+.trim();
 
-    let resultBox = document.getElementById("searchResults");
+const resultBox=document.getElementById("searchResults");
 
-    resultBox.innerHTML = "";
+resultBox.innerHTML="";
 
-    if (input === "") return;
+if(input==="") return;
 
-    let results = productList.filter(product =>
-        product.toLowerCase().includes(input)
-    );
+document.querySelectorAll(".product").forEach(card=>{
 
-    if (results.length === 0) {
+const name=card.querySelector("h3").innerText;
 
-        resultBox.innerHTML =
-            "<div class='search-item'>No Product Found</div>";
+if(name.toLowerCase().includes(input)){
 
-        return;
-    }
+const div=document.createElement("div");
 
-    results.forEach(product => {
+div.className="search-item";
 
-        let div = document.createElement("div");
+div.innerHTML=name;
 
-        div.className = "search-item";
+div.onclick=function(){
 
-        div.innerHTML = product;
+card.scrollIntoView({
 
-        div.onclick = function () {
+behavior:"smooth",
 
-            openProduct(product);
+block:"center"
 
-        };
+});
 
-        resultBox.appendChild(div);
+card.style.boxShadow="0 0 30px gold";
 
-    });
+setTimeout(()=>{
+
+card.style.boxShadow="";
+
+},2000);
+
+resultBox.innerHTML="";
+
+document.getElementById("searchBox").value=name;
+
+};
+
+resultBox.appendChild(div);
+
+}
+
+});
+
+if(resultBox.innerHTML===""){
+
+resultBox.innerHTML="<div class='search-item'>No Product Found</div>";
+
+}
 
 }
 
@@ -180,55 +205,70 @@ window.onload = function () {
 
             selected.innerHTML = "";
 
-            const SHIPPING_CHARGE = 260;
+            
 
 selected.innerHTML = "";
 
-const qtyInput = document.getElementById("quantity");
-qtyInput.value = items[0].qty || 1;
 
 
-function updateSummary() {
+const SHIPPING_CHARGE = 260;
 
-    const qty = Number(qtyInput.value) || 1;
+let subTotal = 0;
 
-    const item = items[0];
+selected.innerHTML = "";
 
-    const subTotal = item.price * qty;
+items.forEach((item, index) => {
 
-    const grandTotal = subTotal + SHIPPING_CHARGE;
+    subTotal += item.price * item.qty;
 
-    selected.innerHTML = `
+    selected.innerHTML += `
+
+    <div class="checkout-item">
+
+        <h3>${item.name}</h3>
+
+        <p>Price : Rs. ${item.price}</p>
+
+        <div class="qty-box">
+
+            <button onclick="changeQty(${index},-1)">−</button>
+
+            <span id="qty${index}">${item.qty}</span>
+
+            <button onclick="changeQty(${index},1)">+</button>
+
+        </div>
+
         <p>
-            <b>Product:</b> ${item.name}<br>
-            <b>Price:</b> Rs. ${item.price}<br>
-            <b>Quantity:</b> ${qty}
+
+        Total : Rs. ${item.price * item.qty}
+
         </p>
+
         <hr>
+
+    </div>
+
     `;
 
-    document.getElementById("subTotal").innerHTML =
-        "Product Total : Rs. " + subTotal;
+});
 
-    document.getElementById("shipping").innerHTML =
-        "Shipping : Rs. " + SHIPPING_CHARGE;
+document.getElementById("subTotal").innerHTML =
+"Product Total : Rs. " + subTotal;
 
-    document.getElementById("grandTotal").innerHTML =
-        "Grand Total : Rs. " + grandTotal;
+document.getElementById("shipping").innerHTML =
+"Shipping : Rs. " + SHIPPING_CHARGE;
+
+document.getElementById("grandTotal").innerHTML =
+"Grand Total : Rs. " + (subTotal + SHIPPING_CHARGE);
+
+   } else {
+
+    selected.innerHTML = "No Product Selected";
+
 }
 
-updateSummary();
-
-qtyInput.addEventListener("input", updateSummary);
-        }
-
-        else {
-
-            selected.innerHTML = "No Product Selected";
-
-        }
-
-    }
+} 
 
     // ==========================
     // SUCCESS PAGE
@@ -240,11 +280,26 @@ qtyInput.addEventListener("input", updateSummary);
 
         if (document.getElementById("successProduct")) {
 
-            document.getElementById("successProduct").innerHTML =
-                "🛒 Product: " + order.product;
+            let productHTML = "";
 
-            document.getElementById("successQuantity").innerHTML =
-                "📦 Quantity: " + order.quantity;
+let totalQty = 0;
+
+order.products.forEach(item => {
+
+    totalQty += item.qty;
+
+    productHTML += `
+        ${item.name} × ${item.qty}<br>
+    `;
+
+});
+
+document.getElementById("successProduct").innerHTML =
+"🛒 Products:<br>" + productHTML;
+
+document.getElementById("successQuantity").innerHTML =
+"📦 Total Items: " + totalQty;
+
 
             document.getElementById("successPrice").innerHTML =
                 "💰 Price: Rs. " + order.price;
@@ -282,7 +337,6 @@ async function placeOrder() {
     let name = document.getElementById("name").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let address = document.getElementById("address").value.trim();
-    let quantity = parseInt(document.getElementById("quantity").value);
 
     let products = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -300,32 +354,36 @@ async function placeOrder() {
 
     }
 
-    if (!quantity || quantity < 1) {
 
-        alert("Please Enter Valid Quantity");
-        return;
-
-    }
-
-    const product = products[0];
-
-     const subTotal = product.price * quantity;
-
+    
 const shipping = 260;
 
-const totalPrice = subTotal + shipping;
+let totalPrice = shipping;
+
+products.forEach(item => {
+
+    totalPrice += item.price * item.qty;
+
+});
 
     const orderData = {
 
-        customerName: name,
-        phone: phone,
-        address: address,
+    customerName: name,
+    phone: phone,
+    address: address,
 
-        productName: product.name,
-        quantity: quantity,
-        price: totalPrice
+    productName: products
+        .map(item => item.name)
+        .join(", "),
 
-    };
+    quantity: products.reduce(
+        (sum, item) => sum + item.qty,
+        0
+    ),
+
+    price: totalPrice
+
+};
           console.log(orderData);
     try {
 
@@ -354,14 +412,17 @@ const totalPrice = subTotal + shipping;
 
         localStorage.setItem("orderDetails", JSON.stringify({
 
-            product: product.name,
-            quantity: quantity,
-            price: totalPrice,
-            name: name,
-            phone: phone,
-            address: address
+    products: products,
 
-        }));
+    total: totalPrice,
+
+    name: name,
+
+    phone: phone,
+
+    address: address
+
+}));
 
         localStorage.removeItem("cart");
 
@@ -695,3 +756,85 @@ document.getElementById("intro").classList.add("intro-hide");
 },3000);
 
 });
+
+const themeBtn = document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme") === "light"){
+
+    document.body.classList.add("light");
+
+    themeBtn.innerHTML="☀️";
+
+}
+
+themeBtn.onclick=function(){
+
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.innerHTML="☀️";
+
+    }else{
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.innerHTML="🌙";
+
+    }
+
+}
+
+function changeQty(index, value){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart[index].qty += value;
+
+    if(cart[index].qty <= 0){
+
+        cart.splice(index,1);
+
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    location.reload();
+
+}
+
+function removeCart(index){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index,1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    location.reload();
+
+}
+
+const searchSection=document.querySelector(".search-section");
+
+if(searchSection){
+
+window.addEventListener("scroll",()=>{
+
+const top=searchSection.offsetTop;
+
+if(window.scrollY>top){
+
+searchSection.classList.add("sticky");
+
+}else{
+
+searchSection.classList.remove("sticky");
+
+}
+
+});
+
+}
