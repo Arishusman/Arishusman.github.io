@@ -4224,7 +4224,7 @@ header {
 }
 .search-section{
     position: sticky;
-    top: 70px;          /* Agar navbar 70px height ka hai */
+    top: 0px;          /* Agar navbar 70px height ka hai */
     z-index: 9999;
     background: #111;
     padding: 15px;
