@@ -4232,3 +4232,80 @@ header {
     box-sizing: border-box;
     box-shadow: 0 2px 10px rgba(0,0,0,.3);
 }
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+.hero{
+    width:100%;
+    padding:20px;
+}
+
+.hero-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:20px;
+}
+
+/* Left Logo */
+.hero-left{
+    width:100%;
+}
+
+.hero-left h1{
+    font-size:48px;
+}
+
+/* Center Text */
+.hero-center{
+    width:100%;
+}
+
+.hero-center h2{
+    font-size:38px;
+    line-height:1.2;
+}
+
+/* Right Paragraph */
+.hero-right{
+    width:100%;
+    font-size:18px;
+    line-height:1.7;
+    white-space:normal;
+    word-break:break-word;
+}
+
+/* Hero Box */
+.hero-box{
+    width:100%;
+    padding:25px;
+}
+
+/* Search Box */
+.search-section{
+    width:95%;
+    margin:auto;
+}
+
+.search-section input{
+    width:100%;
+}
+
+/* Categories */
+.categories{
+    grid-template-columns:1fr;
+}
+
+/* Products */
+.products{
+    grid-template-columns:1fr;
+}
+
+}
+
