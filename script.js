@@ -6,13 +6,15 @@
 // Cart Data
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
+const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
 
 // =====================================
 // ADD TO CART
 // =====================================
 
-function addCart(productName, productPrice, productQty = 1) {
+
+
+    function addCart(productName, productPrice, productImage, productQty = 1) {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -27,9 +29,8 @@ function addCart(productName, productPrice, productQty = 1) {
         cart.push({
 
             name: productName,
-
             price: productPrice,
-
+            image: productImage,
             qty: productQty
 
         });
@@ -38,10 +39,61 @@ function addCart(productName, productPrice, productQty = 1) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
+    updateCartCount();
+
     showToast("🛒 Product Added To Cart");
 
 }
 
+
+function buyNowProduct() {
+
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    if (!product) {
+        alert("Product Not Found");
+        return;
+    }
+
+    const cart = [{
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        qty: 1
+    }];
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    window.location.href = "checkout.html";
+}
+
+function addToWishlist(){
+
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    if(!product) return;
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const exists = wishlist.find(item => item._id === product._id);
+
+    if(exists){
+
+        showToast("❤️ Already in Wishlist");
+
+        return;
+
+    }
+
+    wishlist.push(product);
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    showToast("❤️ Added to Wishlist");
+
+}
 // =====================================
 // SEARCH SYSTEM
 // =====================================
@@ -111,17 +163,24 @@ resultBox.innerHTML="<div class='search-item'>No Product Found</div>";
 
 function showToast(message){
 
-    const toast = document.getElementById("toast");
 
-    toast.innerText = message;
+
+    const toast=document.getElementById("toast");
+
+    if(!toast) return;
+
+    toast.innerText=message;
 
     toast.classList.add("show");
 
     setTimeout(()=>{
+
         toast.classList.remove("show");
+
     },2500);
 
 }
+
 
 
 // =====================================
@@ -171,6 +230,24 @@ function openProduct(productName) {
 
 }
 
+function addCurrentProductToCart(){
+
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    if(!product){
+        alert("Product Not Found");
+        return;
+    }
+
+    addCart(
+        product.name,
+        product.price,
+        product.image,
+        1
+    );
+
+}
+
 // =====================================
 // SHOP NOW BUTTON
 // =====================================
@@ -190,14 +267,18 @@ function scrollProducts() {
 
 window.onload = function () {
 
+   
+
+
+    
+
     // ==========================
     // CHECKOUT PAGE
     // ==========================
 
-    let selected = document.getElementById("selectedProduct");
+    let selected = document.getElementById("selectedProducts");
 
     if (selected) {
-     
 
         let items = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -205,70 +286,63 @@ window.onload = function () {
 
             selected.innerHTML = "";
 
-            
+            const SHIPPING_CHARGE = 260;
 
-selected.innerHTML = "";
+            let subTotal = 0;
 
 
+            items.forEach((item, index) => {
 
-const SHIPPING_CHARGE = 260;
+                subTotal += item.price * item.qty;
 
-let subTotal = 0;
 
-selected.innerHTML = "";
+                selected.innerHTML += `
 
-items.forEach((item, index) => {
+                <div class="checkout-item">
 
-    subTotal += item.price * item.qty;
+                    <h3>${item.name}</h3>
 
-    selected.innerHTML += `
+                    <p>Price : Rs. ${item.price}</p>
 
-    <div class="checkout-item">
+                    <p>
+                    Quantity : ${item.qty}
+                    </p>
 
-        <h3>${item.name}</h3>
 
-        <p>Price : Rs. ${item.price}</p>
+                    <p>
+                    Total : Rs. ${item.price * item.qty}
+                    </p>
 
-        <div class="qty-box">
+                    <hr>
 
-            <button onclick="changeQty(${index},-1)">−</button>
+                </div>
 
-            <span id="qty${index}">${item.qty}</span>
+                `;
 
-            <button onclick="changeQty(${index},1)">+</button>
+            });
 
-        </div>
 
-        <p>
+            document.getElementById("subTotal").innerHTML =
+            "Product Total : Rs. " + subTotal;
 
-        Total : Rs. ${item.price * item.qty}
 
-        </p>
+            document.getElementById("shipping").innerHTML =
+            "Shipping : Rs. " + SHIPPING_CHARGE;
 
-        <hr>
 
-    </div>
+            document.getElementById("grandTotal").innerHTML =
+            "Grand Total : Rs. " + (subTotal + SHIPPING_CHARGE);
 
-    `;
 
-});
+        } else {
 
-document.getElementById("subTotal").innerHTML =
-"Product Total : Rs. " + subTotal;
+            selected.innerHTML = "No Product Selected";
 
-document.getElementById("shipping").innerHTML =
-"Shipping : Rs. " + SHIPPING_CHARGE;
+        }
 
-document.getElementById("grandTotal").innerHTML =
-"Grand Total : Rs. " + (subTotal + SHIPPING_CHARGE);
+    }
 
-   } else {
 
-    selected.innerHTML = "No Product Selected";
-
-}
-
-} 
 
     // ==========================
     // SUCCESS PAGE
@@ -299,10 +373,10 @@ document.getElementById("successProduct").innerHTML =
 
 document.getElementById("successQuantity").innerHTML =
 "📦 Total Items: " + totalQty;
-
+console.log("ORDER DATA =", order);
 
             document.getElementById("successPrice").innerHTML =
-                "💰 Price: Rs. " + order.price;
+                "💰 Price: Rs. " + order.total;
 
             document.getElementById("successName").innerHTML =
                 "👤 Name: " + order.name;
@@ -316,6 +390,49 @@ document.getElementById("successQuantity").innerHTML =
         }
 
     }
+
+    };
+
+    function updateCheckoutQty(){
+
+    const qty = parseInt(document.getElementById("quantity").value) || 1;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if(cart.length===0) return;
+
+    cart[0].qty = qty;
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    const SHIPPING = 260;
+
+    const subtotal = cart[0].price * qty;
+
+    document.getElementById("selectedProducts").innerHTML = `
+        <div class="checkout-item">
+            <h3>${cart[0].name}</h3>
+
+            <p>Price : Rs. ${cart[0].price}</p>
+
+            <p>Quantity : ${qty}</p>
+
+            <p>Total : Rs. ${subtotal}</p>
+
+            <hr>
+        </div>
+    `;
+
+    document.getElementById("subTotal").innerHTML =
+    "Product Total : Rs. " + subtotal;
+
+    document.getElementById("shipping").innerHTML =
+    "Shipping : Rs. " + SHIPPING;
+
+    document.getElementById("grandTotal").innerHTML =
+    "Grand Total : Rs. " + (subtotal + SHIPPING);
+
+}
      if (
     document.getElementById("lawProducts") ||
     document.getElementById("cricketProducts") ||
@@ -325,8 +442,8 @@ document.getElementById("successQuantity").innerHTML =
 }
 
 loadWishlist();
+updateCartCount();
 
-}; 
 
 // =====================================
 // PLACE ORDER & SAVE TO MONGODB
@@ -508,7 +625,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
 
 async function loadProducts() {
 
@@ -539,9 +655,10 @@ async function loadProducts() {
 
     <div class="card-buttons">
 
-        <button onclick="event.stopPropagation(); addCart('${product.name}', ${product.price})">
-            🛒 Add To Cart
-        </button>
+        <button
+onclick='event.stopPropagation(); addCart(${JSON.stringify(product.name)}, ${product.price}, ${JSON.stringify(product.image)})'>
+🛒 Add To Cart
+</button>
 
 
 </div>
@@ -577,18 +694,13 @@ else if (product.category === "Hockey" && hockeyContainer) {
 }
 
 
-function openProductPage(product) {
+function openProductPage(product){
 
-    localStorage.setItem(
-        "selectedProduct",
-        JSON.stringify(product)
-    );
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
 
     window.location.href = "product.html";
 
 }
-
-
 
 // =====================================
 // WISHLIST SYSTEM
@@ -722,6 +834,7 @@ window.addEventListener("load",()=>{
 const brand=document.getElementById("brandText");
 
 const tag=document.getElementById("tagline");
+if(!brand || !tag) return;
 
 const text="A.U SHOP";
 
@@ -751,7 +864,11 @@ tag.innerHTML="PREMIUM ONLINE SHOPPING";
 
 setTimeout(()=>{
 
-document.getElementById("intro").classList.add("intro-hide");
+const intro = document.getElementById("intro");
+
+if(intro){
+    intro.classList.add("intro-hide");
+}
 
 },3000);
 
@@ -767,25 +884,37 @@ if(localStorage.getItem("theme") === "light"){
 
 }
 
-themeBtn.onclick=function(){
 
-    document.body.classList.toggle("light");
+if(themeBtn){
 
-    if(document.body.classList.contains("light")){
+    if(localStorage.getItem("theme")==="light"){
 
-        localStorage.setItem("theme","light");
-
+        document.body.classList.add("light");
         themeBtn.innerHTML="☀️";
-
-    }else{
-
-        localStorage.setItem("theme","dark");
-
-        themeBtn.innerHTML="🌙";
 
     }
 
+    themeBtn.onclick=function(){
+
+        document.body.classList.toggle("light");
+
+        if(document.body.classList.contains("light")){
+
+            localStorage.setItem("theme","light");
+            themeBtn.innerHTML="☀️";
+
+        }else{
+
+            localStorage.setItem("theme","dark");
+            themeBtn.innerHTML="🌙";
+
+        }
+
+    };
+
 }
+
+
 
 function changeQty(index, value){
 
@@ -837,4 +966,145 @@ searchSection.classList.remove("sticky");
 
 });
 
+}
+
+function updateCartCount(){
+
+    const badges=document.querySelectorAll(".cartCount");
+
+    const cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    let total=0;
+
+    cart.forEach(item=>{
+
+        total+=item.qty;
+
+    });
+
+    badges.forEach(badge=>{
+
+        badge.innerText=total;
+
+        badge.style.display=total>0 ? "flex" : "none";
+
+    });
+
+}
+
+// ==========================
+// CART PAGE
+// ==========================
+
+function loadCart() {
+
+    const container = document.getElementById("cartContainer");
+
+    if (!container) return;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+
+        container.innerHTML = "<div class='empty-cart'>🛒 Your Cart Is Empty</div>";
+        document.getElementById("cartTotal").innerHTML = "Total : Rs. 0";
+        return;
+    }
+
+    let total = 0;
+    container.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+        total += item.price * item.qty;
+
+        container.innerHTML += `
+        <div class="cart-item">
+
+            <img src="${item.image || 'logo.png'}" alt="${item.name}">
+
+            <div class="cart-body">
+
+                <h3>${item.name}</h3>
+
+                <div class="cart-price">
+                    Rs. ${item.price}
+                </div>
+
+                <div class="qty-box">
+
+                    <button onclick="changeQty(${index},-1)">-</button>
+
+                    <span>${item.qty}</span>
+
+                    <button onclick="changeQty(${index},1)">+</button>
+
+                </div>
+
+                <button class="remove-btn" onclick="removeItem(${index})">
+                    🗑 Remove
+                </button>
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("cartTotal").innerHTML = "Total : Rs. " + total;
+}
+
+function changeQty(index, value) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart[index].qty += value;
+
+    if (cart[index].qty <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+
+    updateCartCount();
+}
+
+function removeItem(index) {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+
+    updateCartCount();
+}
+
+function moveAllToWishlist() {
+
+    alert("Wishlist feature coming soon.");
+
+}
+
+function goCheckout() {
+
+    if ((JSON.parse(localStorage.getItem("cart")) || []).length === 0) {
+
+        alert("Cart Is Empty");
+
+        return;
+    }
+
+    window.location.href = "checkout.html";
+}
+
+// Sirf cart.html par hi chale
+if (document.getElementById("cartContainer")) {
+    loadCart();
 }

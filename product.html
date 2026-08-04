@@ -107,36 +107,25 @@
 
         </div>
 
-        <div class="qty">
-
-            <label>
-
-                Quantity
-
-            </label>
-
-            <input
-                id="qty"
-                type="number"
-                value="1"
-                min="1"
-            >
-
-        </div>
+        
 
         <div class="product-buttons">
 
-            <button id="cartBtn">
+    <button  id="cartBtn" onclick="addCurrentProductToCart()">
+        🛒 Add to Cart
+    </button>
 
-                🛒 Add To Cart
+    <button id="wishlistBtn" onclick="addToWishlist()">
+        ❤️ Wishlist
+    </button>
 
-            </button>
+</div>
 
-            <button id="buyBtn">
-
-                ⚡ Buy Now
-
-            </button>
+<button id="buyBtn"
+class="buy-now-btn"
+onclick="buyNowProduct()">
+    ⚡ Buy Now
+</button>
 
         </div>
 
@@ -183,7 +172,7 @@ Wishlist
 
 </a>
 
-<a href="checkout.html">
+<a href="cart.html">
 
 Checkout
 
@@ -204,22 +193,22 @@ Checkout
 
 <script>
 
-const PRODUCT_API = "https://a-u-shop-production-bae8.up.railway.app/api/products";
-
 
     // ==========================================
 // PRODUCT PAGE - PART 3
 // ==========================================
 
 const product = JSON.parse(localStorage.getItem("selectedProduct"));
+console.log(product);
 
 if(!product){
 
-    window.location.href="index.html";
+    alert("No Product Found");
 
-}
+}else{
 
-else{
+    console.log("Name =", product.name);
+    console.log("Price =", product.price);
 
     document.getElementById("productImage").src =
         product.image || "https://via.placeholder.com/500";
@@ -234,39 +223,6 @@ else{
         product.description || "No description available.";
 
 }
-// Quantity
-
-const qtyInput = document.getElementById("qty");
-
-document.getElementById("cartBtn").onclick=function(){
-
-    const qty=parseInt(qtyInput.value)||1;
-
-    addCart(
-        product.name,
-        product.price,
-        qty
-    );
-
-};
-
-// Buy Now
-
-document.getElementById("buyBtn").onclick=function(){
-
-    const qty=parseInt(qtyInput.value)||1;
-
-    localStorage.setItem("cart",JSON.stringify([{
-
-        name:product.name,
-        price:product.price,
-        qty:qty
-
-    }]));
-
-    window.location.href="checkout.html";
-
-};
 
 
 // ===========================
@@ -325,13 +281,15 @@ async function loadRelatedProducts(){
 
                 <div class="card-buttons">
 
-                    <button
-                    onclick="event.stopPropagation();
-                    addCart('${item.name}',${item.price},1)">
-
-                        🛒 Add To Cart
-
-                    </button>
+                    <button onclick='event.stopPropagation();
+addCart(
+${JSON.stringify(item.name)},
+${item.price},
+${JSON.stringify(item.image)},
+1
+)'>
+🛒 Add To Cart
+</button>
 
                 </div>
 
@@ -355,6 +313,6 @@ loadRelatedProducts();
 
 </script>
 
-
+<div id="toast"></div>
 </body>
 </html>

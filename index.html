@@ -107,11 +107,14 @@
 <a href="#hockey">Hockey</a>
 <a href="product.html">Products</a>
 
+<a href="cart.html" class="cart-icon">
+    🛒
+    <span class="cartCount">0</span>
+</a>
 
 <button onclick="window.location.href='track.html'">
-    📦 Track Order
+📦 Track Order
 </button>
-
 
 </div>
 
@@ -148,14 +151,18 @@ Shop Now
 
 <div class="search-section">
 
-<input
-type="text"
-id="searchBox"
-placeholder="🔍 Search Product..."
-onkeyup="searchProduct()"
->
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 Search Product..."
+        onkeyup="searchProduct()">
 
-<div id="searchResults"></div>
+    <a href="cart.html" class="sticky-cart">
+        🛒
+        <span class="cartCount">0</span>
+    </a>
+
+    <div id="searchResults"></div>
 
 </div>
 
@@ -262,10 +269,10 @@ target="_blank"
         <span>Home</span>
     </a>
 
-    <a href="#law">
-        📦
-        <span>Products</span>
-    </a>
+    <a href="cart.html">
+    🛒
+    <span>Cart</span>
+</a>
 
     <a href="wishlist.html">
         ❤️
@@ -295,7 +302,7 @@ target="_blank"
 
 <a href="track.html">Track Order</a>
 
-<a href="checkout.html">Checkout</a>
+<a href="cart.html">🛒 Cart</a>
 
 </div>
 

@@ -19,7 +19,7 @@
 <body>
 
 
-
+<div class="checkout-container">
 <div class="checkout-box">
 
 
@@ -30,26 +30,13 @@
 
 
 
-<h2>
-Selected Product
-</h2>
-
-
-
-<div class="selected-product-box">
-
-<div id="selectedProduct">
-
-Loading Product...
-
-</div>
-
-</div>
-
-
 <div class="order-summary">
 
     <h3>Order Summary</h3>
+     <div id="selectedProducts"></div>
+
+
+    <p id="productName"></p>
 
     <p id="subTotal"></p>
 
@@ -63,6 +50,7 @@ Loading Product...
 
 
 
+
 <label>
 📦 Quantity
 </label>
@@ -73,7 +61,8 @@ type="number"
 id="quantity"
 value="1"
 min="1"
->
+oninput="updateCheckoutQty()">
+
 
 
 
@@ -157,6 +146,163 @@ Confirm Order ✅
 
 <script src="script.js"></script>
 
+<script>
+
+function loadCart(){
+
+    const container=document.getElementById("cartContainer");
+
+    let cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    if(cart.length===0){
+
+        container.innerHTML=`
+        <div class="empty-cart">
+            🛒 Your Cart Is Empty
+        </div>
+        `;
+
+        document.getElementById("cartTotal").innerHTML="Total : Rs. 0";
+
+        return;
+
+    }
+
+    let total=0;
+
+    container.innerHTML="";
+
+    cart.forEach((item,index)=>{
+
+        total+=item.price*item.qty;
+
+        container.innerHTML+=`
+
+        <div class="cart-item">
+
+            <img src="${item.image || 'https://via.placeholder.com/300'}">
+
+            <div class="cart-body">
+
+                <h3>${item.name}</h3>
+
+                <div class="cart-price">
+                    Rs. ${item.price}
+                </div>
+
+                <div class="qty-box">
+
+                    <button onclick="changeQty(${index},-1)">
+                        -
+                    </button>
+
+                    <span>${item.qty}</span>
+
+                    <button onclick="changeQty(${index},1)">
+                        +
+                    </button>
+
+                </div>
+
+                <button class="remove-btn"
+                onclick="removeItem(${index})">
+
+                    🗑 Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("cartTotal").innerHTML=
+    "Total : Rs. "+total;
+
+}
+
+function changeQty(index,value){
+
+    let cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart[index].qty+=value;
+
+    if(cart[index].qty<=0){
+
+        cart.splice(index,1);
+
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    loadCart();
+
+    if(typeof updateCartCount==="function"){
+        updateCartCount();
+    }
+
+}
+
+function removeItem(index){
+
+    let cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.splice(index,1);
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    loadCart();
+
+    if(typeof updateCartCount==="function"){
+        updateCartCount();
+    }
+
+}
+
+function moveAllToWishlist(){
+
+    let cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    let wishlist=JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    cart.forEach(product=>{
+
+        if(!wishlist.some(x=>x.name===product.name)){
+
+            wishlist.push(product);
+
+        }
+
+    });
+
+    localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+    alert("❤️ Products Added To Wishlist");
+
+}
+
+function goCheckout(){
+
+    let cart=JSON.parse(localStorage.getItem("cart")) || [];
+
+    if(cart.length===0){
+
+        alert("Cart Is Empty");
+
+        return;
+
+    }
+
+    window.location.href="cart.html";
+
+}
+
+loadCart();
+
+</script>
 
 </body>
 
