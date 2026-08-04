@@ -3604,3 +3604,170 @@ font-size:15px;
 }
 
 }
+
+.moon{
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle,#fff,#ddd);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header{
+    width:90%;
+    margin:40px auto;
+    padding:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+}
+
+/* ===== HOME SUN CIRCLE CENTER FIX ===== */
+
+.home,
+.home a,
+.home-icon,
+.sun,
+.sun-icon,
+.nav-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* sun circle size and perfect center */
+.sun,
+.sun-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+/* agar icon thora upar neeche ho */
+.sun img,
+.sun-icon img,
+.home-icon img {
+    display: block;
+    margin: auto;
+}
+
+
+/* navbar alignment */
+nav,
+.navbar,
+.header-nav {
+    display: flex;
+    align-items: center;
+}
+
+
+/* home item center */
+nav a,
+.navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix Sun Icon Center in Circle */
+.nav-links a:first-child,
+.home-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links a:first-child::before {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* Sun position fix */
+.sun,
+.sun-icon,
+.home-icon span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(1px);
+}
+
+/* ===== FIX HOME SUN ICON CENTER ===== */
+
+.nav-links a:first-child{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#1e293b;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    padding:0;
+    position:relative;
+}
+
+
+/* sun emoji/icon exact center */
+.nav-links a:first-child::first-letter{
+    line-height:1;
+}
+
+
+/* remove extra movement */
+.nav-links a:first-child{
+    transform:none !important;
+}
+
+
+/* agar moon/sun button hai */
+#themeToggle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:0;
+    line-height:1;
+}
+
+
+/* icon andar bilkul center */
+#themeToggle img,
+#themeToggle span{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+}
+
+/* REMOVE HOME BACKGROUND CIRCLE */
+
+.nav-links a:first-child{
+    width:auto !important;
+    height:auto !important;
+    background:transparent !important;
+    border-radius:0 !important;
+    padding:0 !important;
+}
+
+
+/* sun button only circle rahe */
+#themeToggle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#1e293b;
+}
