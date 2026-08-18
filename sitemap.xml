@@ -3,24 +3,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://au-shop.netlify.app/</loc>
+<loc>https://arishusman.github.io/</loc>
 <priority>1.0</priority>
 </url>
 
 <url>
-<loc>https://au-shop.netlify.app/product.html</loc>
+<loc>https://arishusman.github.io/product.html</loc>
 </url>
 
 <url>
-<loc>https://au-shop.netlify.app/checkout.html</loc>
+<loc>https://arishusman.github.io/checkout.html</loc>
 </url>
 
 <url>
-<loc>https://au-shop.netlify.app/wishlist.html</loc>
+<loc>https://arishusman.github.io/wishlist.html</loc>
 </url>
 
 <url>
-<loc>https://au-shop.netlify.app/track.html</loc>
+<loc>https://arishusman.github.io/track.html</loc>
 </url>
 
 </urlset>

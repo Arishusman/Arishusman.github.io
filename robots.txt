@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://au-shop.netlify.app/sitemap.xml
+Sitemap: https://arishusman.github.io/sitemap.xml
